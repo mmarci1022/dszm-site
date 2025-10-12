@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <link rel="icon" type="image/png" href="assets/img/icon-placeholder-white.png">
+<!-- Preload translation BEFORE render to prevent Hungarian flash -->
+<script>
+(function() {
+  try {
+    var lang = sessionStorage.getItem('lang') || 'hu';
+    document.documentElement.lang = lang;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'assets/lang/' + lang + '.json', false); 
+    xhr.send(null);
+    if (xhr.status === 200) {
+      var translations = JSON.parse(xhr.responseText);
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var key = el.dataset.i18n;
+          if (translations[key]) {
+            if (/<[a-z][\s\S]*>/i.test(translations[key])) {
+              el.innerHTML = translations[key];
+            } else {
+              el.textContent = translations[key];
+            }
+          }
+        });
+      });
+    }
+  } catch (e) { /* ignore */ }
+})();
+</script>
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eladó telek – Daruszentmiklós</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script data-goatcounter="https://rewq120.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+  <div class="container header-bar">
+    <div class="header-nav">
+      <a href="#hero" class="brand-link">
+        <span class="logo-stack">
+          <img src="assets/img/icon-placeholder-white.png" alt="Logo" class="logo logo-white">
+          <img src="assets/img/icon-placeholder-black.png" alt="Logo Inverse" class="logo logo-black">
+        </span>
+        <span class="brand" data-i18n="brand">Eladó Telek</span>
+      </a>
+      <nav class="nav">
+        <a href="#location" data-i18n="navLocation">Lokáció</a>
+        <a href="#info" data-i18n="navInfo">Információ</a>
+        <a href="#docs" data-i18n="navDocs">Dokumentumok</a>
+        <a href="#contact" data-i18n="navContact">Kapcsolat</a>
+      </nav>
+    </div>
+    <div class="header-spacer"></div>
+    <div class="header-lang">
+      <img src="assets/img/magyar_nyelv.png" alt="Hungarian" class="flag" data-lang="hu">
+      <img src="assets/img/angol_nyelv.png" alt="English" class="flag" data-lang="en">
+    </div>
+  </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <h1 class="hero-title" data-i18n="heroTitle">Eladó Telek Daruszentmiklóson</h1>
+
+        <div class="hero-inner">
+          <div class="slider" aria-roledescription="carousel">
+            <button class="prev" aria-label="Előző slide">&#10094;</button>
+
+            <!-- Invisible clickable areas -->
+            <div class="slider-clickable-area slider-clickable-left" data-slide="prev"></div>
+            <div class="slider-clickable-area slider-clickable-center" data-slide="next"></div>
+            <div class="slider-clickable-area slider-clickable-right" data-slide="next"></div>
+
+            <div class="slides">
+              <div class="slide active" data-index="0">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta1">1. Raktár:</span> <span class="sqm">437 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/1_epulet.png" data-full="assets/img/1_epulet.png" alt="Raktár" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="1">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta2">2. Épület:</span> <span class="sqm">Ismeretlen méret</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/2_epulet.png" data-full="assets/img/2_epulet.png" alt="Épület 2" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="2">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta3">3. Istálló:</span> <span class="sqm">76 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/3_epulet.png" data-full="assets/img/3_epulet.png" alt="Istálló" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="3">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta4">4. Lakatosüzem:</span> <span class="sqm">471 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/4_epulet.png" data-full="assets/img/4_epulet.png" alt="Lakatosüzem 471 m²" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="4">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta5">5. Lakatosüzem:</span> <span class="sqm">378 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/5_6_epulet.png" data-full="assets/img/5_6_epulet.png" alt="Lakatosüzem 378 m²" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="5">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta6">6. Lakatosüzem:</span> <span class="sqm">595 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/5_6_epulet.png" data-full="assets/img/5_6_epulet.png" alt="Lakatosüzem 595 m²" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="6">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta7">7. Lakatosüzem:</span> <span class="sqm">468 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/7_epulet.png" data-full="assets/img/7_epulet.png" alt="Lakatosüzem 468 m²" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="7">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta8">8. Faipari üzem:</span> <span class="sqm">235 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/8_epulet.png" data-full="assets/img/8_epuet.png" alt="Faipari üzem 235 m²" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="8">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta9">9. Faipari üzem:</span> <span class="sqm">260 m²</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/8_epulet.png" data-full="assets/img/8_epuet.png" alt="Faipari üzem 260 m²" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="9">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta10">10. Kapu</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/kapu.png" data-full="assets/img/kapu.png" alt="Kapu" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+              <div class="slide" data-index="10">
+                <div class="card">
+                  <div class="card-meta"><span data-i18n="cardMeta11">11. Út</span></div>
+                  <div class="card-img-wrap">
+                    <img class="card-img" src="assets/img/thumbs/ut.png" data-full="assets/img/ut.png" alt="Út" loading="lazy">
+                    <span class="frame-icon" title="Nagyítás" tabindex="0">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><line x1="14" y1="3" x2="21" y2="3"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="10" y1="21" x2="3" y2="21"/><line x1="3" y1="21" x2="3" y2="14"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-bottom"></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="next" aria-label="Következő slide">&#10095;</button>
+          </div>
+
+          <div class="hero-copy">
+            <p class="lead" data-i18n="heroLead">Tökéletes elhelyezkedés, hosszútávú értéknövekedési potenciál és széleskörű fejlesztési lehetőségek több mint <strong>7 hektáron</strong>.</p>
+            <div class="hero-buttons">
+              <a href="#info" class="btn" data-i18n="btnDetails">Részletek</a>
+              <a href="#contact" class="btn" data-i18n="btnContact">Kapcsolat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOKÁCIÓ -->
+  <section id="location" class="section section-grid">
+    <div class="container">
+      <h2 class="section-title" data-i18n="locationTitle">Lokáció</h2>
+      <div class="grid">
+        <div class="map-wrap">
+          <div id="gmap" style="width:100%;height:340px;border:1px solid #eee;border-radius:8px;"></div>
+        </div>
+        <div>
+          <h3 data-i18n="locationSub">Stratégiai elhelyezkedés az ország szívében</h3>
+          
+          <p class="justified location-text" data-i18n="locationDesc">Az ipari fejlesztési telek <strong>Fejér és Tolna megye határán</strong>, Daruszentmiklós külterületén helyezkedik el. Az <strong>M6-os autópálya</strong> felhajtója <strong>közvetlenül a telek mellett</strong> található, amely jelenleg egy belső salakos, mindössze 500m hosszú útról érhető el.</p>
+          
+          <p class="location-distances"><strong data-i18n="locationDistances">Főbb távolságok:</strong></p>
+          <div class="distance-list">
+            <div>📍 Paks – 30 km</div>
+            <div>📍 Dunaújváros – 20 km</div>
+            <div>📍 Budapest – 80 km</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- INFORMÁCIÓ -->
+  <section id="info" class="section section-grid">
+    <div class="container">
+      <h2 class="section-title" data-i18n="infoTitle">Részletes információk</h2>
+      <div class="grid">
+        <div>
+          <p class="justified" data-i18n="infoDesc">A kínált ipari fejlesztési terület összesen <strong>70 954 m²</strong>, <strong>GKSZ3</strong> besorolású, így széleskörű ipari, logisztikai, mezőgazdasági vagy energetikai felhasználásra alkalmas. Az ingatlan <strong>művelés alól kivont, tehermentes</strong>, és <strong>magánszemély vagy cég tulajdonába is kerülhet.</strong></p>
+          <div style="margin:1.2rem 0;"></div>
+          <p class="justified" style="margin-bottom:0.7rem;"><strong data-i18n="infoParams">Főbb paraméterek:</strong></p>
+          <ul class="info-list">
+            <li data-i18n="infoParam1">Terület: 70 954 m²</li>
+            <li data-i18n="infoParam2">Beépíthetőség: 40 %</li>
+            <li data-i18n="infoParam3">Maximális építménymagasság: 7,5 m</li>
+            <li data-i18n="infoParam4">Besorolás: GKSZ3</li>
+            <li data-i18n="infoParam5">Áram: MV 20 kV, GTE 250/4 transzformátor a telken belül</li>
+            <li data-i18n="infoParam6">Víz: saját mélykút és hidroglobus, közcsatlakozás 300 m-re</li>
+            <li data-i18n="infoParam7">Gáz: csatlakozási pont 300 m-re (3 bar, 1800 m³/h)</li>
+            <li data-i18n="infoParam8">Szennyvíz: kiépítés alatt</li>
+            <li data-i18n="infoParam9">Tulajdonjog: tehermentes, 1 tulajdonos</li>
+            <li data-i18n="infoParam10">Művelés alól kivonva – nincs kifüggesztési kötelezettség‍</li>
+          </ul>
+          <div style="margin:1.2rem 0;"></div>
+          <p class="justified" style="margin-bottom:0.7rem;"><strong data-i18n="infoBuildings">Meglévő épületek a telken (összesen ~2 954 m²):</strong></p>
+          <ul class="info-list">
+            <li data-i18n="infoBuilding1">Raktár: 437 m²</li>
+            <li data-i18n="infoBuilding2">Porta, mázsaház: 36 m²</li>
+            <li data-i18n="infoBuilding3">Istálló: 76 m²</li>
+            <li data-i18n="infoBuilding4">Lakatosüzemek: 471 m² + 378 m² + 595 m² + 468 m²</li>
+            <li data-i18n="infoBuilding5">Faipari üzemek: 235 m² + 260 m²</li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/img/info_placeholder.png" alt="Információk képe" class="info-image">
+          <p class="subtext justified" style="margin-bottom:0.7rem;"><strong data-i18n="infoUsage">Felhasználási lehetőségek:</strong></p>
+          <ul class="info-list">
+            <li data-i18n="infoUsage1">Napelempark, megújulóenergia-projekt</li>
+            <li data-i18n="infoUsage2">Logisztikai központ vagy ipari csarnok</li>
+            <li data-i18n="infoUsage3">Mezőgazdasági feldolgozóüzem vagy állattartó telep</li>
+            <li data-i18n="infoUsage4">Raktárbázis, disztribúciós központ</li>
+          </ul>
+          <p class="justified" style="margin-top:0.7rem;" data-i18n="infoUsageDesc">
+            A terület fejlesztési rugalmassága, elhelyezkedése és infrastruktúrája révén hosszú távú, stabil befektetést biztosít akár ipari, akár megújulóenergia- vagy agrárprojektek számára.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- DOKUMENTUMOK -->
+  <section id="docs" class="section">
+    <div class="container">
+      <h2 class="section-title" data-i18n="docsTitle">Dokumentumok</h2>
+      <ul class="docs-table">
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc1">1. Helyi építési szabályzat</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Helyi_epitesi_szabalyzat.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+              <a id="download-doc-1" href="assets/pdf/Helyi_epitesi_szabalyzat.pdf" download>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+              </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc2">2. Helyi építési szabályzat 4. sz. melléklet</div>
+          <div class="doc-action">
+            <a href="assets/pdf/HESZ_melleklet_4.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+            <a id="download-doc-2" href="assets/pdf/Helyi_epitesi_szabalyzat.pdf" download>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc3">3. Településszerkezeti terv</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Telepulesszerkezeti_terv.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+            <a id="download-doc-3" href="assets/pdf/Telepulesszerkezeti_terv.pdf" download>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc4">4. Településszerkezeti terv 1.1-es számú melléklet</div>
+          <div class="doc-action">
+            <a href="assets/pdf/TSZT_melleklet_1_1.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-4" href="assets/pdf/TSZT_melleklet_1_1.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+              </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc5">5. Településszerkezeti terv 1.2-es számú melléklet</div>
+          <div class="doc-action">
+            <a href="assets/pdf/TSZT_melleklet_1_2.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-5" href="assets/pdf/TSZT_melleklet_1_2.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+              </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc6">6. Településfejlesztési koncepció</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Telepulesfejlesztesi_koncepcio.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-6" href="assets/pdf/Telepulesfejlesztesi_koncepcio.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc7">7. Településképi arculati kézikönyv</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Telepuleskepi_arculati_kezikonyv.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-7" href="assets/pdf/Telepuleskepi_arculati_kezikonyv.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc8">8. Településkép védelméről</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Telepuleskep_vedelme.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-8" href="assets/pdf/Telepuleskep_vedelmerol.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc9">9. Közművek: Vízellátás</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Kozmu_viz.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-9" href="assets/pdf/Kozmu_viz.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc10">10. Közművek: Földgázellátó hálózat</div>
+          <div class="doc-action">
+            <a href="assets/pdf/Kozmu_gaz.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+        <a id="download-doc-10" href="assets/pdf/kozmu_gaz.pdf" download>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc11">11. Közművek: Villamosenergia-ellátás</div>
+          <div class="doc-action">
+            <a href="assets/pdf/kozmu_villamossag.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+            <a id="download-doc-11" href="assets/pdf/kozmu_villamossag.pdf" download>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+        <li class="docs-row">
+          <div class="doc-title" data-i18n="doc12">12. Közművek: Hírközlés</div>
+          <div class="doc-action">
+            <a href="assets/pdf/kozmu_hirkozles.pdf" target="_blank">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Megtekintés">
+            </a>
+            <a id="download-doc-12" href="assets/pdf/kozmu_hirkozles.pdf" download>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E" alt="Letöltés">
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="contactTitle">Lépjen velünk kapcsolatba</h2>
+
+        <div class="grid contact-grid">
+          <div class="contact-form-wrap">
+            <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+              <label for="name" data-i18n="formNameLabel">NÉV / CÉG NÉV</label>
+              <input id="name" name="name" type="text" placeholder="Név" required data-i18n-placeholder="formNamePlaceholder">
+
+              <label for="email" data-i18n="formEmailLabel">EMAIL CÍM</label>
+              <input id="email" name="_replyto" type="email" placeholder="example@example.com" required data-i18n-placeholder="formEmailPlaceholder">
+
+              <label for="message" data-i18n="formMessageLabel">ÜZENET</label>
+              <textarea id="message" name="message" rows="6" placeholder="Írja meg elérhetőségét, kérdéseit, árajánlatát" required data-i18n-placeholder="formMessagePlaceholder"></textarea>
+
+              <div class="form-bottom">
+                <div class="terms-section">
+                  <input id="terms" type="checkbox" required>
+                  <label for="terms" data-i18n="formTermsLabel">Elolvastam és elfogadom az <a href="adatkezeles.html" target="_blank" data-i18n="formTermsLink">adatkezelési nyilatkozatot</a></label>
+                </div>
+                
+                <div class="submit-section">
+                  <button type="submit" class="btn btn-submit" id="submitBtn" disabled data-i18n="formSubmit">Beküldés</button>
+                </div>
+              </div>
+
+              <p id="form-status" class="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <aside class="contact-info">
+            <h3 data-i18n="contactInfoTitle">További részletek és megtekintés</h3>
+            <p>
+              <span class="contact-icon" style="display:inline-block;vertical-align:middle;margin-right:8px;width:20px;height:20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="2" stroke="currentColor" fill="none"/><polyline points="3,7 12,13 21,7" stroke-width="2" stroke="currentColor" fill="none"/></svg>
+              </span>
+              <a href="mailto:info@eladotelek.hu">info@dszm-site.com</a><br>
+              <img src="assets/img/magyar_telefon.png" alt="Hungarian Phone" class="contact-icon"> +36 30 123 4567<br>
+              <img src="assets/img/angol_magyar_telefon.png" alt="English/Hungarian Phone" class="contact-icon"> +36 70 555 1234
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner container">
+      <a class="footer-left" href="#hero" aria-label="Vissza a tetejére">
+  <img class="footer-logo" src="assets/img/icon-placeholder-black.png" alt="logo">
+        <span class="footer-title" data-i18n="footerTitle">ELADÓ TELEK DARUSZENTMIKLÓS</span>
+      </a>
+      <div class="footer-right">
+        <a href="adatkezeles.html" data-i18n="footerPrivacy">Adatkezelés</a>
+        <a href="#" data-i18n="footerCookies">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiPONTDlmxqqYhm-bWN4b6C2lc3U8-4To&callback=initMap&libraries=marker" async defer></script>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('gmap'), {
+          center: { lat: 46.856775, lng: 18.870069 },
+          zoom: 16,
+          mapTypeId: 'hybrid',
+          keyboardShortcuts: false,
+          disableDefaultUI: true,
+            styles: [
+                // Hide all POIs and transit
+                { featureType: "poi", elementType: "all", stylers: [{ visibility: "off" }] },
+                { featureType: "transit", elementType: "all", stylers: [{ visibility: "off" }] },
+                // Keep administrative names
+                { featureType: "administrative.country", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+                { featureType: "administrative.province", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+                { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+                // Keep road names
+                { featureType: "road", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+                { featureType: "road.local", stylers: [{ visibility: "off" }] },
+          ]
+        });
+        new google.maps.Marker({
+          position: { lat: 46.855375, lng: 18.868069 },
+          map: map
+        });
+      }
+    </script>
+    
+    <!-- Modal image viewer -->
+    <div class="modal-img-viewer hidden" id="modalImgViewer" tabindex="-1">
+      <div class="modal-img-content">
+        <button class="modal-img-close" id="modalImgClose" aria-label="Bezárás">&times;</button>
+        <div id="modalImgLoader" class="modal-img-loader" style="display:none;">
+          <img src="assets/animations/wait_slower.gif" alt="Betöltés..." width="64" height="64" />
+        </div>
+        <img src="" alt="Nagyított kép" id="modalImg" style="display:block;" />
+      </div>
+    </div>
+    <link rel="preload" as="image" href="assets/animations/wait_slower.gif">
+    <script src="script.js"></script>
+
+    <!-- Language switching script -->
+    <script>
+// === Language handling ===
+document.addEventListener('DOMContentLoaded', () => {
+  const defaultLang = 'hu';
+  const savedLang = sessionStorage.getItem('lang') || defaultLang;
+  loadLanguage(savedLang);
+
+  // Language switcher click events
+  document.querySelectorAll('.flag').forEach(flag => {
+    flag.addEventListener('click', () => {
+      const lang = flag.dataset.lang;
+      sessionStorage.setItem('lang', lang);
+      loadLanguage(lang);
+    });
+  });
+});
+
+async function loadLanguage(lang) {
+  try {
+    const url = `assets/lang/${lang}.json`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('HTTP ' + response.status + ' ' + response.statusText);
+    }
+    const translations = await response.json();
+
+    document.documentElement.lang = lang;
+    let foundAny = false;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (translations[key]) {
+        foundAny = true;
+        // Always use innerHTML for translation (safe because you control the JSON)
+        el.innerHTML = translations[key];
+      }
+    });
+    // Set document title based on language
+    if (lang === 'en') {
+      document.title = 'Site for Sale in Daruszentmiklós';
+    } else {
+      document.title = 'Eladó telek – Daruszentmiklós';
+    }
+    if (!foundAny) {
+      console.warn('[i18n] No matching data-i18n keys found in DOM for this language.');
+    }
+
+    // Handle placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (translations[key]) {
+        el.placeholder = translations[key];
+      }
+    });
+
+    // Special case: terms link inside label
+    document.querySelectorAll('label[data-i18n="formTermsLabel"] a[data-i18n="formTermsLink"]').forEach(link => {
+      if (translations['formTermsLink']) {
+        link.textContent = translations['formTermsLink'];
+      }
+    });
+
+    // Remove any previous error
+    const prev = document.getElementById('lang-error');
+    if (prev) prev.remove();
+  } catch (err) {
+    console.error('Language load error:', err);
+    let msg = document.getElementById('lang-error');
+    if (!msg) {
+      msg = document.createElement('div');
+      msg.id = 'lang-error';
+      msg.style.position = 'fixed';
+      msg.style.top = '0';
+      msg.style.left = '0';
+      msg.style.right = '0';
+      msg.style.background = '#c00';
+      msg.style.color = '#fff';
+      msg.style.padding = '10px';
+      msg.style.zIndex = '9999';
+      msg.style.textAlign = 'center';
+      msg.textContent = 'Language file could not be loaded: ' + err;
+      document.body.appendChild(msg);
+    } else {
+      msg.textContent = 'Language file could not be loaded: ' + err;
+      // Show body after translation is applied
+      document.body.style.visibility = 'visible';
+    }
+  }
+}
+    </script>
+</body>
+</html>
