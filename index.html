@@ -2,7 +2,6 @@
 <html lang="hu">
 <head>
   <link rel="icon" type="image/png" href="assets/img/icon-placeholder-white.png">
-<!-- Preload translation BEFORE render to prevent Hungarian flash -->
 <script>
 (function() {
   try {
@@ -539,7 +538,6 @@
       }
     </script>
     
-    <!-- Modal image viewer -->
     <div class="modal-img-viewer hidden" id="modalImgViewer" tabindex="-1">
       <div class="modal-img-content">
         <button class="modal-img-close" id="modalImgClose" aria-label="Bezárás">&times;</button>
@@ -552,15 +550,13 @@
     <link rel="preload" as="image" href="assets/animations/wait_slower.gif">
     <script src="script.js"></script>
 
-    <!-- Language switching script -->
     <script>
-// === Language handling ===
+
 document.addEventListener('DOMContentLoaded', () => {
   const defaultLang = 'hu';
   const savedLang = sessionStorage.getItem('lang') || defaultLang;
   loadLanguage(savedLang);
 
-  // Language switcher click events
   document.querySelectorAll('.flag').forEach(flag => {
     flag.addEventListener('click', () => {
       const lang = flag.dataset.lang;
@@ -585,11 +581,9 @@ async function loadLanguage(lang) {
       const key = el.dataset.i18n;
       if (translations[key]) {
         foundAny = true;
-        // Always use innerHTML for translation (safe because you control the JSON)
         el.innerHTML = translations[key];
       }
     });
-    // Set document title based on language
     if (lang === 'en') {
       document.title = 'Site for Sale in Daruszentmiklós';
     } else {
@@ -599,7 +593,6 @@ async function loadLanguage(lang) {
       console.warn('[i18n] No matching data-i18n keys found in DOM for this language.');
     }
 
-    // Handle placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.dataset.i18nPlaceholder;
       if (translations[key]) {
@@ -607,14 +600,12 @@ async function loadLanguage(lang) {
       }
     });
 
-    // Special case: terms link inside label
     document.querySelectorAll('label[data-i18n="formTermsLabel"] a[data-i18n="formTermsLink"]').forEach(link => {
       if (translations['formTermsLink']) {
         link.textContent = translations['formTermsLink'];
       }
     });
 
-    // Remove any previous error
     const prev = document.getElementById('lang-error');
     if (prev) prev.remove();
   } catch (err) {
@@ -636,7 +627,6 @@ async function loadLanguage(lang) {
       document.body.appendChild(msg);
     } else {
       msg.textContent = 'Language file could not be loaded: ' + err;
-      // Show body after translation is applied
       document.body.style.visibility = 'visible';
     }
   }

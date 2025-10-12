@@ -184,7 +184,6 @@ header {
 }
 .hero-inner { display:flex; gap:2rem; align-items:center; justify-content:center; flex-direction:column; }
 
-/* Main content should grow to fill available space */
 main { flex: 1; }
 
 /* Slider style */
@@ -199,7 +198,6 @@ main { flex: 1; }
   box-sizing: border-box;
 }
 
-/* Ensure arrows are inside slider, above helper divs */
 .slider .prev, .slider .next {
   z-index: 30;
   position: absolute;
@@ -220,8 +218,6 @@ main { flex: 1; }
 }
 .slider .prev { left: 10px; }
 .slider .next { right: 10px; }
-
-/* Helper divs (slider-clickable-area) should be under the arrows */
 .slider .slider-clickable-area {
   z-index: 10;
 }
@@ -267,13 +263,13 @@ main { flex: 1; }
 }
 
 .card {
-  background:#ffffff; /* ugyanaz a világos fehér, mint az oldal */
+  background:#ffffff;
   border-radius:14px;
   padding:2rem;
   box-shadow: 0 10px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.5);
   text-align:center;
-  min-width:374px; /* +20% */
-  max-width:749px; /* +20% */
+  min-width:374px;
+  max-width:749px;
   margin:0 auto;
 }
 .card-meta { font-size:0.95rem; margin-bottom:0.6rem; color:#222; }
@@ -447,18 +443,13 @@ body.modal-open {
 }
 .justified { text-align:justify; }
 
-/* Location section specific styles */
 .location-text { margin-bottom: 1.5rem; margin-top: 1.5rem; }
 .location-distances { margin-bottom: 0.75rem; margin-top: 1.5rem; }
 .distance-list { display: flex; flex-direction: column; gap: 0.5rem; }
 .distance-list div { font-size: 1rem; }
 
-/* Lists with bullet points */
-/* Removed global bullet removal so default bullets appear for info/parameter lists */
-/* Only remove bullets for docs-table, not all ul li */
 .docs-table li { list-style: none; margin-bottom: 0.3rem; padding-left: 0; }
 
-/* Make sure tab characters are visible */
 li { white-space: pre; }
 
 /* Documents table */
@@ -496,7 +487,6 @@ li { white-space: pre; }
   max-height: 300px;
 }
 
-/* Form bottom section */
 .form-bottom {
   width: 100%;
   min-width: 100%;
@@ -545,7 +535,6 @@ li { white-space: pre; }
   margin: 0;
 }
 
-/* Submit button states - match input field styling */
 .btn-submit {
   background:#000; 
   color:#fff; 
@@ -616,7 +605,6 @@ li { white-space: pre; }
 .footer-right a { color:#fff; opacity:0.9; margin-left:1rem; text-decoration:none; }
 .footer-right a:hover { text-decoration:underline; }
 
-/* Responsive tweaks */
 @media (max-width:700px) {
   .hero-title { font-size:1.5rem; }
   .prev { left:5px; } .next { right:5px; }
@@ -624,10 +612,10 @@ li { white-space: pre; }
 }
 
 .unARub-basic-dialog-element--content {
-  margin-top: 50% !important; /* ensures it doesn’t overlap header */
+  margin-top: 50% !important;
   color: #222;
   background: #fff;
-  max-width: 280px; /* same as Google’s default, keep it readable */
+  max-width: 280px;
   word-break: break-word;
 }
 
