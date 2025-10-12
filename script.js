@@ -152,7 +152,7 @@
     statusEl.textContent = translations.formSending || 'Üzenet küldése folyamatban...';
 
     try {
-      const resp = await fetch('https://dszm-email-backend.onrender.com/send', {
+      const resp = await fetch('https://dszm-backend.onrender.com/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, message }),
