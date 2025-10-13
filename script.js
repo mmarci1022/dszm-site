@@ -21,11 +21,8 @@
     if (area.classList.contains('slider-clickable-center')) return;
     area.addEventListener('click', () => {
       const action = area.dataset.slide;
-      if (action === 'prev') {
-        show(idx - 1);
-      } else {
-        show(idx + 1);
-      }
+      if (action === 'prev') show(idx - 1);
+      else show(idx + 1);
     });
   });
 
@@ -52,27 +49,19 @@
           const img = activeSlide.querySelector('.card-img');
           if (img) {
             const loader = document.getElementById('modalImgLoader');
-            const modalClose = document.getElementById('modalImgClose');
             if (loader) loader.style.display = 'flex';
-            if (modalClose) modalClose.style.display = 'none';
             modalImg.style.display = 'none';
             modal.classList.remove('hidden');
             document.body.classList.add('modal-open');
-            modal.focus();
             const fullSrc = img.getAttribute('data-full') || img.src;
             const tempImg = new window.Image();
             tempImg.onload = function() {
               modalImg.src = fullSrc;
               modalImg.style.display = 'block';
               if (loader) loader.style.display = 'none';
-              if (modalClose) modalClose.style.display = 'flex';
+              modalClose.style.display = 'flex';
             };
-            tempImg.onerror = function() {
-              modalImg.src = fullSrc;
-              modalImg.style.display = 'block';
-              if (loader) loader.style.display = 'none';
-              if (modalClose) modalClose.style.display = 'flex';
-            };
+            tempImg.onerror = tempImg.onload;
             tempImg.src = fullSrc;
           }
         }
@@ -80,33 +69,23 @@
     }
 
     modalClose.addEventListener('click', function() {
-  modal.classList.add('hidden');
-  modalImg.src = '';
-  modalImg.style.display = 'block';
-  const loader = document.getElementById('modalImgLoader');
-  if (loader) loader.style.display = 'none';
-  document.body.classList.remove('modal-open');
+      modal.classList.add('hidden');
+      modalImg.src = '';
+      document.body.classList.remove('modal-open');
     });
 
     modal.addEventListener('click', function(e) {
       if (e.target === modal) {
         modal.classList.add('hidden');
         modalImg.src = '';
-        modalImg.style.display = 'block';
-        const loader = document.getElementById('modalImgLoader');
-        if (loader) loader.style.display = 'none';
         document.body.classList.remove('modal-open');
       }
     });
-
 
     document.addEventListener('keydown', function(e) {
       if (!modal.classList.contains('hidden') && (e.key === 'Escape' || e.key === 'Esc')) {
         modal.classList.add('hidden');
         modalImg.src = '';
-        modalImg.style.display = 'block';
-        const loader = document.getElementById('modalImgLoader');
-        if (loader) loader.style.display = 'none';
         document.body.classList.remove('modal-open');
       }
     });
@@ -118,98 +97,95 @@
     setupModalImageViewer();
   }
 
+  // --- Contact form logic (with double protection) ---
   (function () {
+    if (window.__formInit) return; // prevent double init
+    window.__formInit = true;
+
     const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('form-status');
-  const termsCheckbox = document.getElementById('terms');
-  const submitBtn = document.getElementById('submitBtn');
+    const statusEl = document.getElementById('form-status');
+    const termsCheckbox = document.getElementById('terms');
+    const submitBtn = document.getElementById('submitBtn');
 
-  if (!form || !termsCheckbox || !submitBtn) return;
+    if (!form || !termsCheckbox || !submitBtn) return;
 
-  termsCheckbox.addEventListener('change', function () {
-    submitBtn.disabled = !this.checked;
-  });
+    termsCheckbox.addEventListener('change', function () {
+      submitBtn.disabled = !this.checked;
+    });
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    statusEl.textContent = '';
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      statusEl.textContent = '';
 
-    if (!form.reportValidity()) return;
+      if (!form.reportValidity()) return;
 
-    const name = form.querySelector('#name').value.trim();
-    const email = form.querySelector('#email').value.trim();
-    const message = form.querySelector('#message').value.trim();
+      const name = form.querySelector('#name').value.trim();
+      const email = form.querySelector('#email').value.trim();
+      const message = form.querySelector('#message').value.trim();
 
-    submitBtn.disabled = true;
-    statusEl.style.color = '#555';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Küldés folyamatban...';
+      statusEl.style.color = '#555';
 
-    const lang = sessionStorage.getItem('lang') || 'hu';
-    let translations = {};
-    try {
-      const resp = await fetch(`assets/lang/${lang}.json`);
-      if (resp.ok) translations = await resp.json();
-    } catch (e) {}
-    statusEl.textContent = translations.formSending || 'Üzenet küldése folyamatban...';
+      const lang = sessionStorage.getItem('lang') || 'hu';
+      let translations = {};
+      try {
+        const resp = await fetch(`assets/lang/${lang}.json`);
+        if (resp.ok) translations = await resp.json();
+      } catch (e) {}
 
-    try {
-      const resp = await fetch('https://dszm-backend.onrender.com/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
-      });
+      statusEl.textContent = translations.formSending || 'Üzenet küldése folyamatban...';
 
-      const data = await resp.json();
+      try {
+        const resp = await fetch('https://dszm-backend.onrender.com/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message }),
+        });
 
-      if (data.status === 'ok') {
-        statusEl.style.color = 'green';
-        statusEl.textContent = translations.formSuccess || 'Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot.';
-        form.reset();
-      } else {
+        const data = await resp.json();
+
+        if (data.status === 'ok') {
+          statusEl.style.color = 'green';
+          statusEl.textContent = translations.formSuccess || 'Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot.';
+          form.reset();
+        } else {
+          statusEl.style.color = 'red';
+          statusEl.textContent = translations.formError || 'Hiba történt az üzenet küldésekor. Kérjük, próbálja újra.';
+        }
+      } catch (err) {
         statusEl.style.color = 'red';
-        statusEl.textContent = translations.formError || 'Hiba történt az üzenet küldésekor. Kérjük, próbálja újra.';
+        statusEl.textContent = translations.formNetworkError || 'Hálózati hiba történt. Kérjük, próbálja meg később újra.';
+      } finally {
+        setTimeout(() => {
+          submitBtn.disabled = !termsCheckbox.checked;
+          submitBtn.textContent = translations.formSubmit || 'Beküldés';
+        }, 1000);
       }
-    } catch (err) {
-      statusEl.style.color = 'red';
-      statusEl.textContent = translations.formNetworkError || 'Hálózati hiba történt. Kérjük, próbálja meg később újra.';
-    } finally {
-      setTimeout(() => {
-        submitBtn.disabled = !termsCheckbox.checked;
-      }, 1000);
-    }
-  });
+    });
   })();
 
-  // Ping backend to keep it awake
-    const BACKEND_URL = "https://dszm-backend.onrender.com";
-
+  // --- Backend ping + soft retry ---
   async function pingBackend(retryCount = 0) {
     try {
-      const resp = await fetch(`${BACKEND_URL}/ping`, { method: "GET", cache: "no-store" });
+      const resp = await fetch('https://dszm-backend.onrender.com/ping');
       if (resp.ok) {
         console.log(`[Ping] Backend alive ✅ (status: ${resp.status})`);
-      } else {
-        console.warn(`[Ping] Backend responded with status ${resp.status}`);
-        // Retry on non-OK responses, up to 3 times
-        if (retryCount < 3) {
-          const delay = 30000; // 30 seconds
-          console.log(`[Ping] Retrying in ${delay / 1000}s... (${retryCount + 1}/3)`);
-          setTimeout(() => pingBackend(retryCount + 1), delay);
-        }
+        return;
       }
+      console.warn(`[Ping] Backend responded with status ${resp.status}`);
     } catch (err) {
-      console.warn("[Ping] Backend unreachable (likely sleeping).", err);
-      // Retry if connection failed
-      if (retryCount < 3) {
-        const delay = 30000;
-        console.log(`[Ping] Retry scheduled in ${delay / 1000}s... (${retryCount + 1}/3)`);
-        setTimeout(() => pingBackend(retryCount + 1), delay);
-      }
+      console.error('[Ping] Network error:', err);
+    }
+
+    if (retryCount < 3) {
+      console.log(`[Ping] Retrying in 30s... (${retryCount + 1}/3)`);
+      setTimeout(() => pingBackend(retryCount + 1), 30000);
     }
   }
 
-  // Run once when the page fully loads
-  window.addEventListener("load", () => pingBackend());
-
-  // Then ping every 10 minutes to prevent backend hibernation
+  // First ping + 10 min interval
+  pingBackend();
   setInterval(pingBackend, 10 * 60 * 1000);
+
 })();
