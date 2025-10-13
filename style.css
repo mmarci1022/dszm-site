@@ -1,3 +1,124 @@
+/* --- Mobile Documents Table --- */
+@media (max-width: 768px) {
+  .docs-table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #eee;
+    background: #fff;
+  }
+  .docs-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.3rem;
+    border-bottom: 1px solid #f2f2f2;
+    min-height: 1.5rem;
+    gap: 0.5rem;
+  }
+  .doc-title {
+    flex: 1 1 0;
+    font-weight: 500;
+    line-height: 1.5rem;
+    text-align: justify;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 30ch;
+    margin-right: 0.5rem;
+  }
+  .doc-action {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    height: 1.5rem;
+    min-width: 56px;
+    justify-content: flex-end;
+  }
+  .doc-action a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+  }
+  .doc-action img {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+}
+/* --- Mobile Info Section Dropdowns --- */
+@media (max-width: 768px) {
+  .info-mobile-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+    padding: 0 0.7rem;
+  }
+  .info-mobile-image-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.7rem;
+  }
+  .info-image {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+  .info-mobile-intro {
+    margin-bottom: 0.7rem;
+  }
+  .info-mobile-dropdowns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .dropdown {
+    border-radius: 8px;
+    background: #f8f8f8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #eee;
+  }
+  .dropdown-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1rem;
+    font-size: 1.08rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    border-bottom: 1px solid #eee;
+    background: #f8f8f8;
+    transition: background 0.18s;
+  }
+  .dropdown-toggle[aria-expanded="true"] {
+    background: #e0e0e0;
+  }
+  .dropdown-content {
+    display: none;
+    padding: 0.7rem 1rem 1rem 1rem;
+    background: #fff;
+    font-size: 1rem;
+  }
+  .dropdown-content.active {
+    display: block;
+  }
+}
 /* Modal image loader overlay */
 .modal-img-loader {
   position: absolute;
@@ -139,6 +260,36 @@ header {
   display: flex;
   align-items: center;
   gap: 4px; /* kisebb tér menüpontok között */
+}
+
+/* Mobile hamburger menu brand/logo */
+.nav-mobile-brand {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1rem 1rem 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    background: #fff;
+  }
+  .nav-mobile-brand .logo-stack {
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+  }
+  .nav-mobile-brand .brand {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #000;
+  }
+  .nav a {
+    margin-top: 0;
+  }
 }
 
 .nav a {
@@ -759,40 +910,78 @@ li { white-space: pre; }
     text-align: center;
   }
 
-  /* Lokáció */
+  /* Lokáció mobile order and alignment */
   #location .grid {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
   }
-
+  #location .section-title {
+    order: 0;
+    margin-bottom: 1.2rem;
+    text-align: left;
+  }
   #location .map-wrap {
     order: 1;
     width: 100%;
+    margin-bottom: 1.2rem;
   }
-
-  #location .location-text,
-  #location .distance-list {
+  #location h3 {
     order: 2;
-    text-align: center;
-    margin: 1rem 0;
+    text-align: left;
+    margin-bottom: 0.7rem;
+  }
+  #location .location-text {
+    order: 3;
+    text-align: justify;
+    margin-bottom: 0.7rem;
+  }
+  #location .location-distances {
+    order: 4;
+    text-align: left;
+    margin-bottom: 0.3rem;
+  }
+  #location .distance-list {
+    order: 5;
+    text-align: left;
+    margin-left: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  #location .distance-list div {
+    text-align: left;
+    margin-left: 0;
   }
 
-  /* Info szekció */
+  /* Info section mobile layout */
   #info .grid {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     text-align: left;
-    gap: 1.5rem;
+    gap: 1.2rem;
+    padding: 0 1.1rem;
   }
-
   #info .info-image {
     margin: 1rem 0;
     width: 100%;
     height: auto;
-    max-width: 500px;
+    max-width: 340px;
+    align-self: center;
+  }
+  #info .justified {
+    text-align: justify;
+    margin-bottom: 0.7rem;
+  }
+  #info ul.info-list {
+    margin-left: 1.1rem !important;
+    margin-right: 0.5rem !important;
+    padding-left: 0 !important;
+    word-break: break-word;
+  }
+  #info .section-title {
+    margin-bottom: 1.2rem;
+    text-align: left;
   }
 
   /* Dokumentumok */

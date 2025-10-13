@@ -1,5 +1,18 @@
 // Slider with lazy-loading of images
 (function () {
+  // --- Mobile Info Section Dropdowns ---
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.dropdown-toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        const content = btn.parentElement.querySelector('.dropdown-content');
+        if (content) {
+          content.classList.toggle('active', !expanded);
+        }
+      });
+    });
+  });
 
   const slides = Array.from(document.querySelectorAll('.slide'));
   const prevBtn = document.querySelector('.prev');

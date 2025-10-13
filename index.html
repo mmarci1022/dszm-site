@@ -30,7 +30,7 @@
 </script>
   
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eladó telek – Daruszentmiklós</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -54,6 +54,14 @@
       </a>
 
       <nav class="nav">
+          <!-- Mobile logo/title (hidden on desktop, shown in mobile menu) -->
+          <div class="nav-mobile-brand">
+            <span class="logo-stack">
+              <img src="assets/img/icon-placeholder-white.png" alt="Logo" class="logo logo-white">
+              <img src="assets/img/icon-placeholder-black.png" alt="Logo Inverse" class="logo logo-black">
+            </span>
+            <span class="brand" data-i18n="brand">Eladó Telek</span>
+          </div>
         <a href="#location" data-i18n="navLocation">Lokáció</a>
         <a href="#info" data-i18n="navInfo">Információ</a>
         <a href="#docs" data-i18n="navDocs">Dokumentumok</a>
@@ -65,7 +73,7 @@
         <span></span>
         <span></span>
       </button>
-      
+
     </div>
     <div class="header-spacer"></div>
     <div class="header-lang">
@@ -268,45 +276,55 @@
   <section id="info" class="section section-grid">
     <div class="container">
       <h2 class="section-title" data-i18n="infoTitle">Részletes információk</h2>
-      <div class="grid">
-        <div>
-          <p class="justified" data-i18n="infoDesc">A kínált ipari fejlesztési terület összesen <strong>70 954 m²</strong>, <strong>GKSZ3</strong> besorolású, így széleskörű ipari, logisztikai, mezőgazdasági vagy energetikai felhasználásra alkalmas. Az ingatlan <strong>művelés alól kivont, tehermentes</strong>, és <strong>magánszemély vagy cég tulajdonába is kerülhet.</strong></p>
-          <div style="margin:1.2rem 0;"></div>
-          <p class="justified" style="margin-bottom:0.7rem;"><strong data-i18n="infoParams">Főbb paraméterek:</strong></p>
-          <ul class="info-list">
-            <li data-i18n="infoParam1">Terület: 70 954 m²</li>
-            <li data-i18n="infoParam2">Beépíthetőség: 40 %</li>
-            <li data-i18n="infoParam3">Maximális építménymagasság: 7,5 m</li>
-            <li data-i18n="infoParam4">Besorolás: GKSZ3</li>
-            <li data-i18n="infoParam5">Áram: MV 20 kV, GTE 250/4 transzformátor a telken belül</li>
-            <li data-i18n="infoParam6">Víz: saját mélykút és hidroglobus, közcsatlakozás 300 m-re</li>
-            <li data-i18n="infoParam7">Gáz: csatlakozási pont 300 m-re (3 bar, 1800 m³/h)</li>
-            <li data-i18n="infoParam8">Szennyvíz: kiépítés alatt</li>
-            <li data-i18n="infoParam9">Tulajdonjog: tehermentes, 1 tulajdonos</li>
-            <li data-i18n="infoParam10">Művelés alól kivonva – nincs kifüggesztési kötelezettség‍</li>
-          </ul>
-          <div style="margin:1.2rem 0;"></div>
-          <p class="justified" style="margin-bottom:0.7rem;"><strong data-i18n="infoBuildings">Meglévő épületek a telken (összesen ~2 954 m²):</strong></p>
-          <ul class="info-list">
-            <li data-i18n="infoBuilding1">Raktár: 437 m²</li>
-            <li data-i18n="infoBuilding2">Porta, mázsaház: 36 m²</li>
-            <li data-i18n="infoBuilding3">Istálló: 76 m²</li>
-            <li data-i18n="infoBuilding4">Lakatosüzemek: 471 m² + 378 m² + 595 m² + 468 m²</li>
-            <li data-i18n="infoBuilding5">Faipari üzemek: 235 m² + 260 m²</li>
-          </ul>
-        </div>
-        <div>
+      <div class="info-mobile-grid">
+        <div class="info-mobile-image-wrap">
           <img src="assets/img/info_placeholder.png" alt="Információk képe" class="info-image">
-          <p class="subtext justified" style="margin-bottom:0.7rem;"><strong data-i18n="infoUsage">Felhasználási lehetőségek:</strong></p>
-          <ul class="info-list">
-            <li data-i18n="infoUsage1">Napelempark, megújulóenergia-projekt</li>
-            <li data-i18n="infoUsage2">Logisztikai központ vagy ipari csarnok</li>
-            <li data-i18n="infoUsage3">Mezőgazdasági feldolgozóüzem vagy állattartó telep</li>
-            <li data-i18n="infoUsage4">Raktárbázis, disztribúciós központ</li>
-          </ul>
-          <p class="justified" style="margin-top:0.7rem;" data-i18n="infoUsageDesc">
-            A terület fejlesztési rugalmassága, elhelyezkedése és infrastruktúrája révén hosszú távú, stabil befektetést biztosít akár ipari, akár megújulóenergia- vagy agrárprojektek számára.
-          </p>
+        </div>
+        <div class="info-mobile-intro">
+          <p class="justified" data-i18n="infoDesc">A kínált ipari fejlesztési terület összesen <strong>70 954 m²</strong>, <strong>GKSZ3</strong> besorolású, így széleskörű ipari, logisztikai, mezőgazdasági vagy energetikai felhasználásra alkalmas. Az ingatlan <strong>művelés alól kivont, tehermentes</strong>, és <strong>magánszemély vagy cég tulajdonába is kerülhet.</strong></p>
+        </div>
+        <div class="info-mobile-dropdowns">
+          <div class="dropdown">
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="dropdown-params"><strong data-i18n="infoParams">Főbb paraméterek:</strong></button>
+            <div class="dropdown-content" id="dropdown-params">
+              <ul class="info-list">
+                <li data-i18n="infoParam1">Terület: 70 954 m²</li>
+                <li data-i18n="infoParam2">Beépíthetőség: 40 %</li>
+                <li data-i18n="infoParam3">Maximális építménymagasság: 7,5 m</li>
+                <li data-i18n="infoParam4">Besorolás: GKSZ3</li>
+                <li data-i18n="infoParam5">Áram: MV 20 kV, GTE 250/4 transzformátor a telken belül</li>
+                <li data-i18n="infoParam6">Víz: saját mélykút és hidroglobus, közcsatlakozás 300 m-re</li>
+                <li data-i18n="infoParam7">Gáz: csatlakozási pont 300 m-re (3 bar, 1800 m³/h)</li>
+                <li data-i18n="infoParam8">Szennyvíz: kiépítés alatt</li>
+                <li data-i18n="infoParam9">Tulajdonjog: tehermentes, 1 tulajdonos</li>
+                <li data-i18n="infoParam10">Művelés alól kivonva – nincs kifüggesztési kötelezettség‍</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="dropdown-buildings"><strong data-i18n="infoBuildings">Meglévő épületek a telken (összesen ~2 954 m²):</strong></button>
+            <div class="dropdown-content" id="dropdown-buildings">
+              <ul class="info-list">
+                <li data-i18n="infoBuilding1">Raktár: 437 m²</li>
+                <li data-i18n="infoBuilding2">Porta, mázsaház: 36 m²</li>
+                <li data-i18n="infoBuilding3">Istálló: 76 m²</li>
+                <li data-i18n="infoBuilding4">Lakatosüzemek: 471 m² + 378 m² + 595 m² + 468 m²</li>
+                <li data-i18n="infoBuilding5">Faipari üzemek: 235 m² + 260 m²</li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="dropdown-usage"><strong data-i18n="infoUsage">Felhasználási lehetőségek:</strong></button>
+            <div class="dropdown-content" id="dropdown-usage">
+              <ul class="info-list">
+                <li data-i18n="infoUsage1">Napelempark, megújulóenergia-projekt</li>
+                <li data-i18n="infoUsage2">Logisztikai központ vagy ipari csarnok</li>
+                <li data-i18n="infoUsage3">Mezőgazdasági feldolgozóüzem vagy állattartó telep</li>
+                <li data-i18n="infoUsage4">Raktárbázis, disztribúciós központ</li>
+              </ul>
+              <p class="justified" style="margin-top:0.7rem;" data-i18n="infoUsageDesc">A terület fejlesztési rugalmassága, elhelyezkedése és infrastruktúrája révén hosszú távú, stabil befektetést biztosít akár ipari, akár megújulóenergia- vagy agrárprojektek számára.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
