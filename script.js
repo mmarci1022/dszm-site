@@ -220,4 +220,31 @@
   });
 });
 
+  // --- Smooth menu open/close animation ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const burger = document.querySelector(".hamburger");
+    const nav = document.querySelector(".nav");
+    if (!burger || !nav) return;
+
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      nav.classList.toggle("active");
+
+      if (nav.classList.contains("active")) {
+        nav.style.maxHeight = nav.scrollHeight + "px";
+      } else {
+        nav.style.maxHeight = null;
+      }
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        burger.classList.remove("active");
+        nav.classList.remove("active");
+        nav.style.maxHeight = null;
+      });
+    });
+  });
+
+
 })();

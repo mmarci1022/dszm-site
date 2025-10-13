@@ -45,23 +45,15 @@
 <header class="header">
   <div class="container header-bar">
     <div class="header-nav">
-      <a href="#hero" class="brand-link">
-        <span class="logo-stack">
-          <img src="assets/img/icon-placeholder-white.png" alt="Logo" class="logo logo-white">
-          <img src="assets/img/icon-placeholder-black.png" alt="Logo Inverse" class="logo logo-black">
-        </span>
-        <span class="brand" data-i18n="brand">Eladó Telek</span>
-      </a>
-
       <nav class="nav">
-          <!-- Mobile logo/title (hidden on desktop, shown in mobile menu) -->
-          <div class="nav-mobile-brand">
-            <span class="logo-stack">
-              <img src="assets/img/icon-placeholder-white.png" alt="Logo" class="logo logo-white">
-              <img src="assets/img/icon-placeholder-black.png" alt="Logo Inverse" class="logo logo-black">
-            </span>
-            <span class="brand" data-i18n="brand">Eladó Telek</span>
-          </div>
+        <a href="#hero" class="brand-link">
+          <span class="logo-stack">
+            <img src="assets/img/icon-placeholder-white.png" alt="Logo" class="logo logo-white">
+            <img src="assets/img/icon-placeholder-black.png" alt="Logo Inverse" class="logo logo-black">
+          </span>
+          <span class="brand" data-i18n="brand">Eladó Telek</span>
+        </a>
+
         <a href="#location" data-i18n="navLocation">Lokáció</a>
         <a href="#info" data-i18n="navInfo">Információ</a>
         <a href="#docs" data-i18n="navDocs">Dokumentumok</a>
@@ -73,9 +65,10 @@
         <span></span>
         <span></span>
       </button>
-
     </div>
+
     <div class="header-spacer"></div>
+
     <div class="header-lang">
       <img src="assets/img/magyar_nyelv.png" alt="Hungarian" class="flag" data-lang="hu">
       <img src="assets/img/angol_nyelv.png" alt="English" class="flag" data-lang="en">
@@ -253,20 +246,19 @@
     <div class="container">
       <h2 class="section-title" data-i18n="locationTitle">Lokáció</h2>
       <div class="grid">
-        <div class="map-wrap">
-          <div id="gmap" style="width:100%;height:340px;border:1px solid #eee;border-radius:8px;"></div>
-        </div>
         <div>
           <h3 data-i18n="locationSub">Stratégiai elhelyezkedés az ország szívében</h3>
-          
-          <p class="justified location-text" data-i18n="locationDesc">Az ipari fejlesztési telek <strong>Fejér és Tolna megye határán</strong>, Daruszentmiklós külterületén helyezkedik el. Az <strong>M6-os autópálya</strong> felhajtója <strong>közvetlenül a telek mellett</strong> található, amely jelenleg egy belső salakos, mindössze 500m hosszú útról érhető el.</p>
-          
+          <p class="justified location-text" data-i18n="locationDesc">...</p>
           <p class="location-distances"><strong data-i18n="locationDistances">Főbb távolságok:</strong></p>
           <div class="distance-list">
             <div>📍 Paks – 30 km</div>
             <div>📍 Dunaújváros – 20 km</div>
             <div>📍 Budapest – 80 km</div>
           </div>
+        </div>
+
+        <div class="map-wrap">
+          <div id="gmap" style="width:100%;height:340px;border:1px solid #eee;border-radius:8px;"></div>
         </div>
       </div>
     </div>
@@ -562,8 +554,6 @@
       </div>
     </div>
     <link rel="preload" as="image" href="assets/animations/wait_slower.gif">
-    <script src="script.js"></script>
-
     <script>
 
 document.addEventListener('DOMContentLoaded', () => {

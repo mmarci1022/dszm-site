@@ -1142,3 +1142,163 @@ li { white-space: pre; }
     margin-top: 0.8rem;
   }
 }
+
+/* === DSZM FINAL MOBILE FIX PATCH === */
+
+/* 1️⃣ Hamburger menu animation & layout fix */
+@media (max-width: 768px) {
+  header {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-bar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+  }
+
+  /* Hide nav by default */
+  .nav {
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    border-top: 1px solid #eee;
+    z-index: 999;
+  }
+
+  .nav.active {
+    max-height: 360px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav a {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid #f3f3f3;
+    color: #000;
+    text-align: left;
+  }
+
+  /* Hamburger animation fix */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2001;
+  }
+
+  .hamburger span {
+    height: 3px;
+    width: 100%;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  /* Remove duplicate brand section (mobile-brand) */
+  .nav-mobile-brand {
+    display: none !important;
+  }
+}
+
+/* 2️⃣ Hero center alignment fix */
+.hero {
+  text-align: center;
+  padding-top: 110px;
+}
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero-title {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  text-align: center;
+  margin: 1.2rem 0;
+  line-height: 1.2;
+}
+.lead {
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  max-width: 600px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* 3️⃣ Info, Location, Contact, Footer alignment fix */
+#location, #info, #docs, #contact, .footer {
+  text-align: left;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+#location .grid,
+#info .grid,
+#docs .docs-table,
+#contact .contact-grid,
+.footer-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 4️⃣ Map reappearance fix (ensure visible on mobile) */
+.map-wrap {
+  display: block !important;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* 5️⃣ Footer color + layout fix */
+.footer {
+  background: #000 !important;
+  color: #fff !important;
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
