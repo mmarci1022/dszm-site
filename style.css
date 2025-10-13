@@ -1,3 +1,6 @@
+  .nav.active .brand-link:hover .brand {
+    color: #fff;
+  }
 /* --- Mobile Documents Table --- */
 @media (max-width: 768px) {
   /* Make privacy policy acceptance text smaller */
@@ -195,25 +198,46 @@
     display: block;
   }
 
-  /* Hamburger menu logo/header in mobile menu */
-  .nav-mobile-brand {
+  /* Hamburger menu logo/header in mobile menu (actual structure) */
+  .nav.active .brand-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 1rem 1rem 0.5rem 1rem;
+    justify-content: flex-start;
+    gap: 0.7rem;
+    padding: 1.1rem 1rem 1.1rem 1rem;
     border-bottom: 1px solid #eee;
     width: 100%;
     background: #fff;
+    text-align: left;
+    font-size: inherit;
+    transition: background-color 0.2s linear, color 0.2s linear;
   }
-  .nav-mobile-brand .logo-stack {
+  .nav.active .brand-link:hover {
+    background: #000;
+    color: #fff;
+  }
+  .nav.active .brand-link .logo-stack {
     width: 32px;
     height: 32px;
-    margin-right: 6px;
+    margin: 0;
+    display: block;
+    object-fit: contain;
   }
-  .nav-mobile-brand .brand {
+
+  .nav.active .brand-link .logo-stack img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    width: auto;
+  }
+  .nav.active .brand-link .brand {
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.13rem;
     color: #000;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    height: 32px;
   }
 }
 /* Modal image loader overlay */
@@ -881,7 +905,7 @@ li { white-space: pre; }
 }
 
 
-/* === DSZM – MOBIL CSS BLOKK  === */
+/* === DSZM MOBILE FIX v4 – működő hamburger + info sortörés === */
 
 @media (max-width: 768px) {
 
@@ -889,6 +913,7 @@ li { white-space: pre; }
   body {
     font-size: 0.95rem;
     line-height: 1.55;
+    overflow-x: hidden;
   }
 
   .container {
@@ -941,7 +966,7 @@ li { white-space: pre; }
     transform: rotate(-45deg) translateY(-8px);
   }
 
-  /* Menü slide animációval */
+  /* --- NAV (hamburger menü slide animációval) --- */
   .nav {
     position: absolute;
     top: 76px;
@@ -951,17 +976,19 @@ li { white-space: pre; }
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
     border-top: 1px solid #eee;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
     z-index: 2000;
   }
 
   .nav.active {
     max-height: 90vh;
-    overflow-y: auto;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav a {
@@ -972,17 +999,21 @@ li { white-space: pre; }
     color: #000;
     text-align: left;
     border-bottom: 1px solid #f3f3f3;
+    text-decoration: none;
   }
 
+  .nav a:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Scrollbar, ha hosszú */
   .nav::-webkit-scrollbar {
     width: 6px;
   }
   .nav::-webkit-scrollbar-thumb {
     background: #aaa;
     border-radius: 3px;
-  }
-  .nav::-webkit-scrollbar-track {
-    background: transparent;
   }
 
   /* --- HERO --- */
@@ -1089,14 +1120,24 @@ li { white-space: pre; }
     margin: 0 auto 1rem;
   }
 
-  #info .justified,
-  #info .info-list {
-    font-size: 0.95rem;
-    line-height: 1.55;
+  /* Sortörés és max-width minden szövegre és listára */
+  #info p,
+  #info li,
+  #info ul,
+  #info .justified {
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
     text-align: justify;
-    word-break: break-word;
-    white-space: normal;
+    line-height: 1.55;
+    font-size: 0.95rem;
+    max-width: 95%;
     margin: 0 auto;
+  }
+
+  #info ul {
+    list-style-type: disc;
+    padding-left: 1.2rem;
   }
 
   /* --- DOKUMENTUMOK --- */
