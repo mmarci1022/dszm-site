@@ -55,31 +55,42 @@
     display: block;
   }
   /* Location section: add same padding as info text */
-  /* Location section: apply padding/margin to all texts */
-  #location .location-text,
-  #location .location-distances,
-  #location .distance-list,
-  #location .grid > div > h3,
-  #location .grid > div > p {
+  /* Location section mobile paddings/margins */
+  #location .grid > div > h3 {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
-    margin-left: 0;
-    margin-right: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
   }
-  /* Reorder map for mobile: map between main header and subheader */
+  #location .location-text {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  #location .location-distances {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  #location .distance-list {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  /* Reorder map for mobile: map between subheader and main text */
   #location .grid {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     text-align: left;
   }
-  #location .grid > .map-wrap { order: 1; }
-  #location .grid > div > h3 { order: 2; }
-  #location .grid > div > .location-text,
-  #location .grid > div > .location-distances,
-  #location .grid > div > .distance-list {
-    order: 3;
-  }
+  #location .grid > div > h3 { order: 1; }
+  #location .grid > .map-wrap { order: 2; }
+  #location .grid > div > .location-text { order: 3; }
+  #location .grid > div > .location-distances { order: 4; }
+  #location .grid > div > .distance-list { order: 5; }
 
   /* Info lists: allow line breaks */
   .info-list {
