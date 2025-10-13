@@ -190,22 +190,21 @@
 
   // --- Hamburger menu toggle ---
   document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.nav');
-    if (burger && nav) {
-      burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        nav.classList.toggle('active');
-      });
+  const burger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav');
+  if (!burger || !nav) return;
 
-      // Menüpont kattintás után zárja be
-      nav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          burger.classList.remove('active');
-          nav.classList.remove('active');
-        });
-      });
-    }
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    nav.classList.toggle('active');
   });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('active');
+      nav.classList.remove('active');
+    });
+  });
+});
 
 })();

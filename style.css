@@ -640,10 +640,27 @@ li { white-space: pre; }
   display: none;
 }
 
-/* Mobilnézet: 768px alatt aktiváljuk */
+/* --- Mobil reszponzív beállítások + hamburger --- */
+.hamburger {
+  display: none;
+}
+
 @media (max-width: 768px) {
 
-  /* --- Hamburger gomb --- */
+  /* Alap konténer viselkedés */
+  .container {
+    max-width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header-bar {
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  /* Hamburger megjelenítése */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -654,18 +671,18 @@ li { white-space: pre; }
     border: none;
     cursor: pointer;
     margin-left: 8px;
-    z-index: 2000;
+    z-index: 2001;
+    position: relative;
   }
 
   .hamburger span {
     height: 3px;
     width: 100%;
     background: #000;
-    border-radius: 3px;
+    border-radius: 2px;
     transition: all 0.3s ease;
   }
 
-  /* animáció open állapotban */
   .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translateY(8px);
   }
@@ -676,7 +693,7 @@ li { white-space: pre; }
     transform: rotate(-45deg) translateY(-8px);
   }
 
-  /* --- Navigáció mobilon --- */
+  /* Menü (mobil verzió) */
   .nav {
     position: absolute;
     top: 76px;
@@ -687,12 +704,17 @@ li { white-space: pre; }
     align-items: flex-start;
     gap: 0;
     border-top: 1px solid #eee;
-    display: none; /* alapból rejtve */
-    z-index: 1500;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    display: flex;
+    z-index: 2000;
   }
 
   .nav.active {
-    display: flex;
+    max-height: 300px;
+    opacity: 1;
   }
 
   .nav a {
@@ -700,46 +722,131 @@ li { white-space: pre; }
     width: 100%;
     padding: 1rem;
     border-bottom: 1px solid #f2f2f2;
+    text-align: left;
   }
 
-  /* --- Info szekció --- */
-  #info .grid {
-    display: flex;
+  /* Hero szekció */
+  .hero {
+    padding-top: 100px;
+    text-align: center;
+  }
+
+  .hero-inner {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  #info .info-image {
-    margin: 1.5rem 0;
-    width: 100%;
+  .card {
+    min-width: auto;
     max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .card-img,
+  .card-img-wrap {
+    width: 100%;
     height: auto;
   }
 
-  /* --- Lokáció szekció --- */
+  .hero-copy {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .lead {
+    text-align: center;
+  }
+
+  /* Lokáció */
   #location .grid {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   #location .map-wrap {
     order: 1;
+    width: 100%;
   }
 
   #location .location-text,
   #location .distance-list {
     order: 2;
+    text-align: center;
+    margin: 1rem 0;
   }
 
-  /* --- Footer fix --- */
-  .footer {
-    position: relative;
-    bottom: 0;
+  /* Info szekció */
+  #info .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 1.5rem;
+  }
+
+  #info .info-image {
+    margin: 1rem 0;
     width: 100%;
+    height: auto;
+    max-width: 500px;
+  }
+
+  /* Dokumentumok */
+  .docs-table {
+    width: 100%;
+  }
+
+  .docs-row {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0.8rem 0;
+  }
+
+  .doc-title {
+    word-break: break-word;
+    text-align: left;
+  }
+
+  .doc-action {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Kapcsolat */
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .contact-form-wrap,
+  .contact-info {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .contact-form-wrap form {
+    width: 100%;
+  }
+
+  /* Footer */
+  .footer {
+    background: #000;
+    color: #fff;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    text-align: center;
   }
 
   .footer-inner {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer-right {
