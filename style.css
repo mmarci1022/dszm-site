@@ -54,6 +54,16 @@
     height: 28px;
     display: block;
   }
+  /* Location section: add same padding as info text */
+  #location .location-text {
+    padding: 0 0.7rem;
+  }
+
+  /* Info lists: allow line breaks */
+  .info-list {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
 }
 @media (max-width: 768px) {
   /* Info section mobile-only dropdowns */
@@ -974,6 +984,9 @@ li { white-space: pre; }
     text-align: left;
     margin-left: 0;
   }
+  /* Reorder children so map is after header */
+  #location .grid > .map-wrap { order: 1; }
+  #location .grid > div:not(.map-wrap) { order: 2; }
 
   /* Info section mobile layout */
   #info .grid {
