@@ -1302,3 +1302,143 @@ li { white-space: pre; }
   text-decoration: underline;
 }
 
+/* === DSZM MOBILE + STYLE REFINEMENT PATCH v2 === */
+
+/* 1️⃣ Logó igazítás az első menüpontnál */
+.header-bar .brand-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 76px;
+}
+
+.brand-link .logo-stack {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-right: 6px;
+}
+
+.brand-link .brand {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+/* 2️⃣ Hamburger menü magasság + padding fix */
+@media (max-width: 768px) {
+  .nav.active {
+    max-height: 90vh; /* több hely a hosszú menünek */
+    overflow-y: auto;
+    padding-bottom: 1.5rem;
+  }
+
+  .nav a {
+    padding: 1.1rem 1.4rem;
+    font-size: 1.05rem;
+  }
+
+  /* biztosítsa, hogy a kapcsolat menüpont is látható maradjon */
+  .nav::-webkit-scrollbar {
+    width: 6px;
+  }
+  .nav::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 3px;
+  }
+  .nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* 3️⃣ Hero section header arányosítás */
+.hero-title {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+.section-title {
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+/* 4️⃣ Info section text max-width + sortörés */
+#info p,
+#info ul,
+#info li {
+  max-width: 700px;
+  line-height: 1.55;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#info .justified {
+  text-align: justify;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 5️⃣ Dokumentumok ikonjainak duplikáció fix */
+.docs-row .doc-action a img {
+  display: block !important;
+  width: 28px !important;
+  height: 28px !important;
+}
+.docs-row .doc-action a + a img {
+  display: none !important;
+}
+
+/* 6️⃣ Szövegek általános méretcsökkentése */
+body {
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.hero-copy,
+.lead,
+.info-list,
+.location-text,
+.footer,
+.contact-form-wrap label,
+.contact-form-wrap input,
+.contact-form-wrap textarea {
+  font-size: 0.95rem;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+}
+
+/* 7️⃣ Footer és Contact igazítás finomítása */
+.footer-inner {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+.contact-grid {
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
