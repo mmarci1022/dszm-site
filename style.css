@@ -633,7 +633,14 @@ li { white-space: pre; }
 }
 
 
-/* === MOBIL VERZIÓ === */
+/* === MOBIL HAMBURGER ÉS RESZPONZÍV NÉZET === */
+
+/* Alapértelmezés: csak desktop */
+.hamburger {
+  display: none;
+}
+
+/* Mobilnézet: 768px alatt aktiváljuk */
 @media (max-width: 768px) {
 
   /* --- Hamburger gomb --- */
@@ -649,6 +656,7 @@ li { white-space: pre; }
     margin-left: 8px;
     z-index: 2000;
   }
+
   .hamburger span {
     height: 3px;
     width: 100%;
@@ -679,16 +687,19 @@ li { white-space: pre; }
     align-items: flex-start;
     gap: 0;
     border-top: 1px solid #eee;
-    display: none;
+    display: none; /* alapból rejtve */
+    z-index: 1500;
   }
+
+  .nav.active {
+    display: flex;
+  }
+
   .nav a {
     display: block;
     width: 100%;
     padding: 1rem;
     border-bottom: 1px solid #f2f2f2;
-  }
-  .nav.active {
-    display: flex;
   }
 
   /* --- Info szekció --- */
@@ -696,6 +707,7 @@ li { white-space: pre; }
     display: flex;
     flex-direction: column;
   }
+
   #info .info-image {
     margin: 1.5rem 0;
     width: 100%;
@@ -708,9 +720,11 @@ li { white-space: pre; }
     display: flex;
     flex-direction: column;
   }
+
   #location .map-wrap {
     order: 1;
   }
+
   #location .location-text,
   #location .distance-list {
     order: 2;
@@ -722,10 +736,12 @@ li { white-space: pre; }
     bottom: 0;
     width: 100%;
   }
+
   .footer-inner {
     flex-direction: column;
     text-align: center;
   }
+
   .footer-right {
     margin-top: 0.8rem;
   }

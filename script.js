@@ -198,6 +198,7 @@
         nav.classList.toggle('active');
       });
 
+      // Menüpont kattintás után zárja be
       nav.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
           burger.classList.remove('active');
