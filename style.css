@@ -1,5 +1,37 @@
 /* --- Mobile Documents Table --- */
 @media (max-width: 768px) {
+  /* Make privacy policy acceptance text smaller */
+  .terms-section label {
+    font-size: 0.85rem;
+  }
+
+  /* Info section: allow line breaks in lists and fix textbox width */
+  .info-list {
+    white-space: normal !important;
+    word-break: break-word !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  #info .info-mobile-intro,
+  #info .info-mobile-dropdowns {
+    max-width: 600px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Location: correct map order (map under 'Stratégiai...', above 'Az ipari...') */
+  #location .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+  #location .grid > div > h3 { order: 1; }
+  #location .grid > .map-wrap { order: 2; }
+  #location .grid > div > .location-text { order: 3; }
+  #location .grid > div > .location-distances { order: 4; }
+  #location .grid > div > .distance-list { order: 5; }
   .docs-table {
     width: 100%;
     margin: 0;
