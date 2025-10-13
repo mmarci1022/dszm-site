@@ -179,4 +179,37 @@
   });
   })();
 
+  // Ping backend to keep it awake
+    const BACKEND_URL = "https://dszm-backend.onrender.com";
+
+  async function pingBackend(retryCount = 0) {
+    try {
+      const resp = await fetch(`${BACKEND_URL}/ping`, { method: "GET", cache: "no-store" });
+      if (resp.ok) {
+        console.log(`[Ping] Backend alive ✅ (status: ${resp.status})`);
+      } else {
+        console.warn(`[Ping] Backend responded with status ${resp.status}`);
+        // Retry on non-OK responses, up to 3 times
+        if (retryCount < 3) {
+          const delay = 30000; // 30 seconds
+          console.log(`[Ping] Retrying in ${delay / 1000}s... (${retryCount + 1}/3)`);
+          setTimeout(() => pingBackend(retryCount + 1), delay);
+        }
+      }
+    } catch (err) {
+      console.warn("[Ping] Backend unreachable (likely sleeping).", err);
+      // Retry if connection failed
+      if (retryCount < 3) {
+        const delay = 30000;
+        console.log(`[Ping] Retry scheduled in ${delay / 1000}s... (${retryCount + 1}/3)`);
+        setTimeout(() => pingBackend(retryCount + 1), delay);
+      }
+    }
+  }
+
+  // Run once when the page fully loads
+  window.addEventListener("load", () => pingBackend());
+
+  // Then ping every 10 minutes to prevent backend hibernation
+  setInterval(pingBackend, 10 * 60 * 1000);
 })();
