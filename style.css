@@ -631,3 +631,102 @@ li { white-space: pre; }
   margin-left: 0 !important;
   padding-left: 0 !important;
 }
+
+
+/* === MOBIL VERZIÓ === */
+@media (max-width: 768px) {
+
+  /* --- Hamburger gomb --- */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    z-index: 2000;
+  }
+  .hamburger span {
+    height: 3px;
+    width: 100%;
+    background: #000;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  /* animáció open állapotban */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* --- Navigáció mobilon --- */
+  .nav {
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    border-top: 1px solid #eee;
+    display: none;
+  }
+  .nav a {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid #f2f2f2;
+  }
+  .nav.active {
+    display: flex;
+  }
+
+  /* --- Info szekció --- */
+  #info .grid {
+    display: flex;
+    flex-direction: column;
+  }
+  #info .info-image {
+    margin: 1.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* --- Lokáció szekció --- */
+  #location .grid {
+    display: flex;
+    flex-direction: column;
+  }
+  #location .map-wrap {
+    order: 1;
+  }
+  #location .location-text,
+  #location .distance-list {
+    order: 2;
+  }
+
+  /* --- Footer fix --- */
+  .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-right {
+    margin-top: 0.8rem;
+  }
+}

@@ -188,4 +188,23 @@
   pingBackend();
   setInterval(pingBackend, 10 * 60 * 1000);
 
+  // --- Hamburger menu toggle ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
+
+      nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          burger.classList.remove('active');
+          nav.classList.remove('active');
+        });
+      });
+    }
+  });
+
 })();
