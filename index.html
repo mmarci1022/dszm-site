@@ -548,23 +548,24 @@
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiPONTDlmxqqYhm-bWN4b6C2lc3U8-4To&callback=initMap&libraries=marker" async defer></script>
     <script>
       function initMap() {
+        var isMobile = window.innerWidth <= 980;
         var map = new google.maps.Map(document.getElementById('gmap'), {
           center: { lat: 46.856775, lng: 18.870069 },
-          zoom: 16,
+          zoom: isMobile ? 15 : 16,
           mapTypeId: 'hybrid',
           keyboardShortcuts: false,
           disableDefaultUI: true,
-            styles: [
-                // Hide all POIs and transit
-                { featureType: "poi", elementType: "all", stylers: [{ visibility: "off" }] },
-                { featureType: "transit", elementType: "all", stylers: [{ visibility: "off" }] },
-                // Keep administrative names
-                { featureType: "administrative.country", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
-                { featureType: "administrative.province", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
-                { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
-                // Keep road names
-                { featureType: "road", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
-                { featureType: "road.local", stylers: [{ visibility: "off" }] },
+          styles: [
+            // Hide all POIs and transit
+            { featureType: "poi", elementType: "all", stylers: [{ visibility: "off" }] },
+            { featureType: "transit", elementType: "all", stylers: [{ visibility: "off" }] },
+            // Keep administrative names
+            { featureType: "administrative.country", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+            { featureType: "administrative.province", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+            { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+            // Keep road names
+            { featureType: "road", elementType: "labels.text.fill", stylers: [{ visibility: "on" }] },
+            { featureType: "road.local", stylers: [{ visibility: "off" }] },
           ]
         });
         new google.maps.Marker({
