@@ -85,6 +85,12 @@
   }
 /* --- Mobile Documents Table --- */
 @media (max-width: 768px) {
+  /* Lower map height on mobile */
+  #gmap,
+  .map-wrap iframe {
+    height: 200px !important;
+    min-height: 0;
+  }
   .terms-section label {
     font-size: 0.55rem;
   }
