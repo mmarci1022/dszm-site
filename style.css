@@ -25,7 +25,7 @@
   font-size: 1.08rem;
   line-height: 1.5;
 }
-#cookies-banner {
+/* #cookies-banner {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -37,7 +37,7 @@
   box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
   font-size: 1.08rem;
   line-height: 1.5;
-}
+} */
 #cookies-banner .cookies-banner-inner {
   max-width: 900px;
   margin: auto;
@@ -78,47 +78,62 @@
   border: 1px solid #fff;
 }
 @media (max-width: 700px) {
-  #cookies-banner .cookies-banner-inner {
-    flex-direction: column;
-    gap: 0.7rem;
-    align-items: center;
-    justify-content: center;
+  #gmap,
+  .map-wrap iframe {
+    height: 275px !important;
+    min-height: 0 !important;
+    max-height: 275px !important;
+    flex: none !important;
+    width: 100% !important;
+    display: block !important;
   }
-  #cookies-banner .cookies-banner-text {
-    text-align: center;
-  }
-  #cookies-accept {
-    width: 100%;
-    font-size: 1rem;
-    margin-top: 0.5rem;
+  .map-wrap {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex: none !important;
   }
 }
-  .nav.active .brand-link:hover .brand {
-    color: #fff;
-  }
+
+#cookies-banner .cookies-banner-text {
+  text-align: center;
+}
+#cookies-accept {
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.nav.active .brand-link:hover .brand {
+  color: #fff;
+}
+
 /* --- Mobile Documents Table --- */
 @media (max-width: 768px) {
+  /* Set map column height to match map on mobile */
+  .location-map-col {
+    height: 275px !important;
+    min-height: 275px !important;
+    max-height: 275px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 
   .location-info-col .location-distances-title {
     margin-left: 1.2rem;
   }
-  /* Smaller font for terms label in Kapcsolat section on mobile */
-  .terms-section label[data-i18n="formTermsLabel"] {
-    font-size: 0.45rem;
-  }
+
   /* Lower map height on mobile */
   #gmap,
   .map-wrap iframe {
     height: 150px !important;
     min-height: 0;
   }
-    /* Smaller font for terms label in Kapcsolat section on mobile */
     .terms-section label[data-i18n="formTermsLabel"] {
-      font-size: 0.36rem;
-    }
-  .terms-section label {
-    font-size: 0.55rem;
+      font-size: 0.8rem !important;
   }
+
 
   .info-list {
     white-space: normal !important;
