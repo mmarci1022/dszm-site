@@ -1,14 +1,94 @@
+/* === Cookies Banner === */
+#cookies-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 3000;
+  background: #000;
+  color: #fff;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+#cookies-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 3000;
+  background: #000;
+  color: #fff;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+#cookies-banner .cookies-banner-inner {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#cookies-banner .cookies-banner-text {
+  margin: 0;
+  text-align: center;
+}
+#cookies-banner a {
+  color: #fff;
+  text-decoration: underline;
+  transition: color 0.18s, background 0.18s;
+}
+#cookies-banner a:hover {
+  color: #000;
+  background: #fff;
+}
+#cookies-accept {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 0.5rem 1.2rem;
+  border-radius: 22px;
+  font-weight: 700;
+  transition: all .18s;
+  cursor: pointer;
+  font-size: 1.08rem;
+}
+#cookies-accept:hover {
+  background: #000;
+  color: #fff;
+  border: 1px solid #fff;
+}
+@media (max-width: 700px) {
+  #cookies-banner .cookies-banner-inner {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+    justify-content: center;
+  }
+  #cookies-banner .cookies-banner-text {
+    text-align: center;
+  }
+  #cookies-accept {
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+}
   .nav.active .brand-link:hover .brand {
     color: #fff;
   }
 /* --- Mobile Documents Table --- */
 @media (max-width: 768px) {
-  /* Make privacy policy acceptance text smaller */
   .terms-section label {
-    font-size: 0.85rem;
+    font-size: 0.55rem;
   }
 
-  /* Info section: allow line breaks in lists and fix textbox width */
   .info-list {
     white-space: normal !important;
     word-break: break-word !important;
@@ -23,18 +103,18 @@
     margin-right: auto;
   }
 
-  /* Location: correct map order (map under 'Stratégiai...', above 'Az ipari...') */
   #location .grid {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     text-align: left;
   }
-  #location .grid > div > h3 { order: 1; }
-  #location .grid > .map-wrap { order: 2; }
-  #location .grid > div > .location-text { order: 3; }
-  #location .grid > div > .location-distances { order: 4; }
-  #location .grid > div > .distance-list { order: 5; }
+
+  #location .grid > .location-header { order: 2 !important; }
+  #location .grid > .map-wrap { order: 1 !important; }
+  #location .grid > .location-text-wrap { order: 3 !important; }
+  #location .grid > .location-distances-wrap { order: 4 !important; }
+  #location .grid > .distance-list { order: 5 !important; }
   .docs-table {
     width: 100%;
     margin: 0;
@@ -89,8 +169,7 @@
     height: 28px;
     display: block;
   }
-  /* Location section: add same padding as info text */
-  /* Location section mobile paddings/margins */
+
   #location .grid > div > h3 {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
@@ -114,7 +193,7 @@
     padding-right: 1.2rem;
     margin-bottom: 1.2rem;
   }
-  /* Reorder map for mobile: map between subheader and main text */
+
   #location .grid {
     display: flex;
     flex-direction: column;
@@ -127,14 +206,13 @@
   #location .grid > div > .location-distances { order: 4; }
   #location .grid > div > .distance-list { order: 5; }
 
-  /* Info lists: allow line breaks */
   .info-list {
     white-space: normal !important;
     word-break: break-word !important;
   }
 }
 @media (max-width: 768px) {
-  /* Info section mobile-only dropdowns */
+
   #info .grid { display: none; }
   #info .info-mobile-grid {
     display: flex;
@@ -198,7 +276,6 @@
     display: block;
   }
 
-  /* Hamburger menu logo/header in mobile menu (actual structure) */
   .nav.active .brand-link {
     display: flex;
     align-items: center;
@@ -240,36 +317,35 @@
     height: 32px;
   }
 }
-/* Modal image loader overlay */
+
 .modal-img-loader {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.0); /* transparent, just in case */
+  background: rgba(255,255,255,0.0);
   z-index: 2;
 }
 .modal-img-content {
   position: relative;
 }
-/* Make frame icon always clickable above slider clickable areas */
+
 .card-img-wrap:has(.frame-icon:hover) ~ .slider-clickable-area,
 .card-img-wrap:has(.frame-icon:focus) ~ .slider-clickable-area {
   pointer-events: none !important;
 }
-/* Offset anchor scroll for fixed header */
+
 section, .section, [id] {
   scroll-margin-top: 90px;
 }
 
-/* Reset & base */
 * { box-sizing: border-box; margin:0; padding:0; }
 html,body { height:100%; }
 body {
   font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color:#0b0b0b;
-  background:#ffffff; /* világos fehér */
+  background:#ffffff;
   line-height:1.6;
   font-size: 1.13rem;
   -webkit-font-smoothing:antialiased;
@@ -369,7 +445,6 @@ header {
   transition-delay: 0s;
 }
 
-/* On hover of brand-link or header-nav, crossfade logos */
 .brand-link:hover .logo-white {
   opacity: 0;
 }
@@ -380,10 +455,9 @@ header {
 .nav {
   display: flex;
   align-items: center;
-  gap: 4px; /* kisebb tér menüpontok között */
+  gap: 4px;
 }
 
-/* Mobile hamburger menu brand/logo */
 .nav-mobile-brand {
   display: none;
 }
@@ -510,7 +584,6 @@ main { flex: 1; }
   z-index: 2;
 }
 
-/* Invisible clickable areas behind slider */
 .slider-clickable-area {
   position: absolute;
   top: 0;
@@ -645,7 +718,6 @@ body.modal-open {
   width: 100%;
 }
 
-/* arrows */
 .prev, .next {
   position:absolute;
   top:50%;
@@ -663,7 +735,6 @@ body.modal-open {
 .prev { left:-54px; }
 .next { right:-54px; }
 
-/* hero copy & buttons */
 .hero-copy {
   text-align: center;
   margin-top: 1.2rem;
@@ -686,8 +757,11 @@ body.modal-open {
 }
 .btn:hover { background:#fff; color:#000; border:1px solid #000; }
 
-/* Sections general */
-.section { padding:3.5rem 0; }
+.section { padding:4.5rem 0; }
+
+main > section.section {
+  margin-bottom: 4.5rem;
+}
 .section-title {
   font-size: 2.7rem; 
   margin-bottom: 1.8rem;
@@ -696,22 +770,101 @@ body.modal-open {
   font-weight: 700;
 }
 
-/* Grid helpers */
-.section-grid .grid { display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:start; }
-@media (max-width:980px) { .section-grid .grid { grid-template-columns: 1fr; gap:2rem; } }
+
+/* Location section grid columns for map and info */
+.section-grid .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.location-map-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.map-wrap {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.map-wrap iframe,
+#gmap {
+  flex: 1 1 0;
+  height: 100%;
+  min-height: 340px;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  display: block;
+}
+
+.location-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+.location-sub {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  line-height: 1.25;
+}
+.location-text {
+  margin-bottom: 0.2rem;
+  margin-top: 0;
+  text-align: justify;
+}
+.location-distances-title {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+  margin-top: 0.4rem;
+}
+.distance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.01rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 980px) {
+  .section-grid .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .location-info-col {
+    margin-top: 1.5rem;
+  }
+  .location-map-col,
+  .map-wrap,
+  .map-wrap iframe,
+  #gmap {
+    height: 340px !important;
+    min-height: 0;
+  }
+}
 
 /* Map */
 .map-wrap iframe { width:100%; height:340px; border:1px solid #eee; border-radius:8px; display:block; }
 
 /* Info */
 .info-image {
-  height: 150%;
-  width: 120%;
-  max-width: 620px;
+  max-width: 100%;
   display: block;
-  margin-bottom: 1rem;
-  margin-top: -8rem;
-  margin-left: -10%;
+  margin-bottom: 1.2rem;
+  margin-top: -8.5rem;
+  margin-left: 0;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 980px) {
+  .info-image {
+    margin-top: 0;
+  }
 }
 .justified { text-align:justify; }
 
@@ -862,10 +1015,8 @@ li { white-space: pre; }
   white-space: nowrap;
 }
 
-/* Contact icons */
 .contact-icon { width: 20px; height: 20px; display: inline; margin-right: 8px; vertical-align: middle; }
 
-/* Status */
 .status { margin-top:0.5rem; font-weight:600; color:green; }
 
 /* Footer */
@@ -905,11 +1056,10 @@ li { white-space: pre; }
 }
 
 
-/* === DSZM MOBILE FIX v4 – működő hamburger + info sortörés === */
+/* === DSZM MOBILE FIX v4  === */
 
 @media (max-width: 768px) {
 
-  /* --- Alap --- */
   body {
     font-size: 0.95rem;
     line-height: 1.55;
@@ -966,7 +1116,6 @@ li { white-space: pre; }
     transform: rotate(-45deg) translateY(-8px);
   }
 
-  /* --- NAV (hamburger menü slide animációval) --- */
   .nav {
     position: absolute;
     top: 76px;
@@ -1007,7 +1156,6 @@ li { white-space: pre; }
     color: #fff;
   }
 
-  /* Scrollbar, ha hosszú */
   .nav::-webkit-scrollbar {
     width: 6px;
   }
@@ -1120,7 +1268,6 @@ li { white-space: pre; }
     margin: 0 auto 1rem;
   }
 
-  /* Sortörés és max-width minden szövegre és listára */
   #info p,
   #info li,
   #info ul,
@@ -1174,7 +1321,7 @@ li { white-space: pre; }
   }
 
   .doc-action a + a {
-    display: none !important; /* csak 1 ikon marad */
+    display: none !important;
   }
 
   .doc-action img {
