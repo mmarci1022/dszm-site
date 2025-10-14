@@ -363,6 +363,11 @@
   position: relative;
 }
 
+/* Hide close button while loader is visible */
+.modal-img-content:has(.modal-img-loader:not([style*="display: none"])) .modal-img-close {
+  display: none !important;
+}
+
 .card-img-wrap:has(.frame-icon:hover) ~ .slider-clickable-area,
 .card-img-wrap:has(.frame-icon:focus) ~ .slider-clickable-area {
   pointer-events: none !important;
