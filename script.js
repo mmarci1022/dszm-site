@@ -370,23 +370,36 @@
       statusEl.textContent = translations.formSending || 'Üzenet küldése folyamatban...';
 
       try {
+        const payload = { name, email, message };
+        console.debug('[Contact] Sending payload to backend:', payload);
         const resp = await fetch('https://dszm-backend.onrender.com/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, message }),
+          body: JSON.stringify(payload),
         });
 
-        const data = await resp.json();
+        console.debug('[Contact] Response status:', resp.status, resp.statusText);
+        let data;
+        try {
+          data = await resp.json();
+          console.debug('[Contact] Response JSON:', data);
+        } catch (parseErr) {
+          const text = await resp.text();
+          console.warn('[Contact] Response not JSON, raw text:', text);
+          data = { status: 'error', raw: text };
+        }
 
         if (data.status === 'ok') {
           statusEl.style.color = 'green';
           statusEl.textContent = translations.formSuccess || 'Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot.';
           form.reset();
         } else {
+          console.warn('[Contact] Backend returned non-ok status:', data);
           statusEl.style.color = 'red';
           statusEl.textContent = translations.formError || 'Hiba történt az üzenet küldésekor. Kérjük, próbálja újra.';
         }
       } catch (err) {
+        console.error('[Contact] Network or JS error while sending:', err);
         statusEl.style.color = 'red';
         statusEl.textContent = translations.formNetworkError || 'Hálózati hiba történt. Kérjük, próbálja meg később újra.';
       } finally {
