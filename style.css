@@ -372,16 +372,58 @@
   align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.0);
-  z-index: 2;
+  z-index: 1500; /* loader sits above placeholder but below controls */
 }
 .modal-img-content {
   position: relative;
 }
 
-/* Hide close button while loader is visible */
-.modal-img-content:has(.modal-img-loader:not([style*="display: none"])) .modal-img-close {
-  display: none !important;
+/* Loading wrapper: shows a centered 16:9 box with semi-transparent black behind the loader GIF */
+.modal-img-content .modal-loading-wrap {
+  position: absolute;
+  inset: 0;
+  display: none; /* shown only when .loading is present on modal-img-content */
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2100;
 }
+.modal-img-content.loading .modal-loading-wrap {
+  display: flex;
+}
+.modal-loading-box {
+  width: 100%;
+  max-width: calc(1100px - 20px);
+  aspect-ratio: 16 / 9;
+  background: rgba(0,0,0,0.3); /* 30% opacity black */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.modal-loading-box {
+  position: relative; /* allow absolute-positioned controls inside the loading box */
+}
+.modal-loading-box .modal-img-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  z-index: 2120;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.modal-loading-box img { width:48px; height:48px; display:block; }
 
 .card-img-wrap:has(.frame-icon:hover) ~ .slider-clickable-area,
 .card-img-wrap:has(.frame-icon:focus) ~ .slider-clickable-area {
@@ -710,57 +752,166 @@ main { flex: 1; }
   transition: background 0.18s;
 }
 
+/* Mobile frame-icon optimizations */
+@media (max-width: 768px) {
+  .frame-icon {
+    width: 44px;
+    height: 44px;
+    right: 12px;
+    bottom: 12px;
+    background: rgba(255,255,255,0.95);
+    touch-action: manipulation;
+  }
+  
+  .frame-icon:active {
+    background: #e0e0e0;
+    transform: scale(0.95);
+  }
+}
+
 /* Modal image viewer */
 .modal-img-viewer {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.82);
+  inset: 0;
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
   transition: opacity 0.2s;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .modal-img-viewer.hidden {
   display: none;
 }
 .modal-img-content {
   position: relative;
-  max-width: 92vw;
+  /* allow the modal to expand to the viewport width but limit to hero max width minus 20px */
+  width: 100vw;
+  max-width: calc(1100px - 20px);
   max-height: 92vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.modal-img-content img {
-  max-width: 92vw;
-  max-height: 92vh;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  background: transparent;
-}
-.modal-img-close {
-  position: absolute;
-  top: -18px;
-  right: -18px;
-  width: 38px;
-  height: 38px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 1.7rem;
-  color: #222;
+
+/* Placeholder: reserve fixed space so layout doesn't jump while loading */
+.modal-img-placeholder {
+  /* The placeholder no longer acts as a hoarder background — it simply wraps the image.
+     We keep it for DOM structure only; image fills this area. */
+  width: 100%;
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  position: relative;
+  overflow: visible;
+  background: transparent !important;
   border: none;
+  border-radius: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Image lives absolutely inside the placeholder and is contained by it */
+.modal-img-placeholder img#modalImg {
+  display: block !important;
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* fill the area while maintaining aspect — will crop if necessary */
+  border-radius: 12px; /* rounded image as requested */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  z-index: 2000;
+}
+
+/* Loader and image visibility controlled by placeholder state */
+.modal-img-placeholder.loading #modalImgLoader { display:flex !important; }
+.modal-img-placeholder.loading #modalImg { display:none !important; }
+.modal-img-placeholder.loaded #modalImg { display:block !important; }
+.modal-img-placeholder:not(.loading) #modalImgLoader { display:none !important; }
+
+/* Loader overlays the placeholder without changing its size */
+.modal-img-placeholder #modalImgLoader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; /* keep transparent background so underlying overlay is visible */
+  z-index: 2100;
+  pointer-events: none; /* loader doesn't block button clicks if buttons are above */
+}
+
+/* ensure loader gif is centered within the inner area */
+.modal-img-placeholder #modalImgLoader img { width:48px; height:48px; display:block; }
+
+/* Ensure modal content and controls are visible above all page content */
+.modal-img-viewer { z-index: 99999; }
+.modal-img-content { z-index: 100000; pointer-events: auto; }
+.modal-img-placeholder .modal-nav-btn, .modal-img-placeholder .modal-img-close { pointer-events: auto; }
+
+/* Navigation buttons live inside the placeholder and are pinned relative to it */
+.modal-img-content .modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 50%;
+  color: #111;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2200; /* above image */
   transition: background 0.18s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-.modal-img-close:hover {
-  background: #eee;
+.modal-img-placeholder .modal-nav-btn:hover {
+  background: #f4f4f4;
 }
+.modal-img-content .modal-nav-prev { left: 12px; }
+.modal-img-content .modal-nav-next { right: 12px; }
+
+/* Close button pinned to top-right inside placeholder */
+.modal-img-placeholder .modal-img-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.95);
+  color: #111;
+  border-radius: 50%;
+  z-index: 2300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.28);
+  cursor: pointer;
+}
+.modal-img-placeholder .modal-img-close:hover { background: #f4f4f4; }
+
+/* Ensure .hidden always hides modal (strong rule) and remove temporary emergency overrides */
+.modal-img-viewer.hidden { display: none !important; }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .modal-img-viewer { padding: 10px; }
+  .modal-img-content { max-width: 100vw; max-height: 100vh; }
+  /* On narrow screens prefer a taller aspect (4:3) */
+  .modal-img-placeholder { width: 96%; min-height: 200px; --modal-aspect-ratio: 4 / 3; }
+  .modal-img-placeholder .modal-nav-btn { width: 40px; height: 40px; font-size: 16px; }
+  .modal-img-placeholder .modal-nav-prev { left: 8px; }
+  .modal-img-placeholder .modal-nav-next { right: 8px; }
+}
+
 
 body.modal-open {
   overflow: hidden !important;
