@@ -6,48 +6,168 @@
   <title>Cookie tájékoztató / Cookies Policy</title>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family:"Instrument Sans",sans-serif; max-width:800px; margin:auto; padding:2rem; line-height:1.6; background:#fff; color:#000; }
-    h1 { margin-bottom:1rem; }
-    .cookie-table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
-    .cookie-table th, .cookie-table td { border: 1px solid #222; padding: 0.5rem; text-align: left; }
-    .cookie-table th { background: #000; color: #fff; }
-    .cookie-table td { background: #fff; color: #000; }
-    a { color: #000; text-decoration: underline; }
-    a:hover { color: #fff; background: #000; }
+    body {
+      font-family: "Instrument Sans", sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      line-height: 1.6;
+      color: #222;
+      background: #fff;
+    }
+    h1 { margin-bottom: 1rem; font-weight: 600; }
+    h2 { margin-top: 2rem; font-weight: 600; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+    th, td {
+      border: 1px solid #222;
+      padding: 0.6rem;
+      text-align: left;
+    }
+    th {
+      background: #000;
+      color: #fff;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .lang-switch {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.5rem;
+    }
+    .lang-btn {
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+      transition: background 0.2s;
+    }
+    .lang-btn.active {
+      background: #0066cc;
+      color: white;
+      border-color: #0066cc;
+    }
+    .section { display: none; }
+    .section.active { display: block; }
   </style>
 </head>
 <body>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="hu">HU</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+
   <h1>Cookie tájékoztató / Cookies Policy</h1>
-  <p>Ez a weboldal kevés számú és alacsony funkcionalitású sütiket használ a működéshez és statisztikai célokra.</p>
-  <p>This website uses a small number of low-functionality cookies for operation and analytics purposes.</p>
 
-  <h2>Használt sütik / Cookies Used</h2>
-  <table class="cookie-table">
-    <tr>
-      <th>Név / Name</th>
-      <th>Cél / Purpose</th>
-      <th>Lejárat / Expiry</th>
-      <th>Típus / Type</th>
-    </tr>
-    <tr>
-      <td>lang (sessionStorage)</td>
-      <td>Felhasználó által választott nyelv tárolása / Stores user language preference</td>
-      <td>Munkamenet / Session</td>
-      <td>Funkcionális / Functional</td>
-    </tr>
-    <tr>
-      <td>goatcounter</td>
-      <td>Látogatottsági statisztika / Visitor analytics (GoatCounter)</td>
-      <td>1 év / 1 year</td>
-      <td>Statisztikai / Analytics</td>
-    </tr>
-  </table>
+  <!-- Hungarian -->
+  <div id="section-hu" class="section active">
+    <p>Ez a weboldal kis mennyiségű, alacsony funkcionalitású sütit használ a működéshez, statisztikai célokra, valamint a Google Maps megjelenítéséhez. A sütik nem alkalmasak személyazonosításra, és nem tartalmaznak érzékeny adatokat.</p>
 
-  <p>A "lang" érték sessionStorage-ban tárolódik, nem hagy el a böngészőt. A GoatCounter harmadik féltől származó statisztikai cookie-t helyezhet el.</p>
-  <p>The "lang" value is stored in sessionStorage and does not leave your browser. GoatCounter may set a third-party analytics cookie.</p>
+    <h2>Használt sütik</h2>
+    <table>
+      <tr>
+        <th>Név</th>
+        <th>Cél</th>
+        <th>Lejárat</th>
+        <th>Típus</th>
+      </tr>
+      <tr>
+        <td><code>lang</code> (sessionStorage)</td>
+        <td>Felhasználó által választott nyelv tárolása</td>
+        <td>Munkamenet</td>
+        <td>Funkcionális</td>
+      </tr>
+      <tr>
+        <td><code>goatcounter</code></td>
+        <td>Látogatottsági statisztika (GoatCounter)</td>
+        <td>1 év</td>
+        <td>Statisztikai</td>
+      </tr>
+      <tr>
+        <td><code>Google Maps API</code></td>
+        <td>Térkép megjelenítése a Google Maps szolgáltatásán keresztül</td>
+        <td>A Google által meghatározott időtartam</td>
+        <td>Funkcionális / Harmadik fél</td>
+      </tr>
+    </table>
 
-  <p>További információ: <a href="adatkezeles.html">Adatkezelési tájékoztató</a></p>
-  <p>For more information: <a href="adatkezeles.html">Privacy Policy</a></p>
-  <p><a href="index.html">Vissza a főoldalra / Back to homepage</a></p>
+    <p>
+      A „lang” érték kizárólag a böngészőben tárolódik, és nem kerül továbbításra a szerver felé.<br>
+      A GoatCounter egy nyílt forráskódú, adatvédelmi-barát statisztikai szolgáltatás, amely nem gyűjt személyes adatokat.<br>
+      A Google Maps használata során a Google a saját 
+      <a href="https://policies.google.com/privacy?hl=hu" target="_blank">Adatvédelmi szabályzatának</a> megfelelően kezelhet sütiket.
+    </p>
+
+    <p>További információ: <a href="adatkezeles.html">Adatkezelési tájékoztató</a></p>
+    <p><a href="index.html">Vissza a főoldalra</a></p>
+  </div>
+
+  <!-- English -->
+  <div id="section-en" class="section">
+    <p>This website uses a small number of low-functionality cookies for operation, analytics, and displaying Google Maps. These cookies are not used for personal identification and do not contain sensitive data.</p>
+
+    <h2>Cookies Used</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Purpose</th>
+        <th>Expiry</th>
+        <th>Type</th>
+      </tr>
+      <tr>
+        <td><code>lang</code> (sessionStorage)</td>
+        <td>Stores the user’s selected language</td>
+        <td>Session</td>
+        <td>Functional</td>
+      </tr>
+      <tr>
+        <td><code>goatcounter</code></td>
+        <td>Visitor analytics (GoatCounter)</td>
+        <td>1 year</td>
+        <td>Analytics</td>
+      </tr>
+      <tr>
+        <td><code>Google Maps API</code></td>
+        <td>Displays the map using Google Maps service</td>
+        <td>As determined by Google</td>
+        <td>Functional / Third-party</td>
+      </tr>
+    </table>
+
+    <p>
+      The “lang” value is stored locally in the browser and never sent to the server.<br>
+      GoatCounter is a privacy-friendly open-source analytics tool that does not collect personal data.<br>
+      When using Google Maps, cookies may be placed according to 
+      <a href="https://policies.google.com/privacy?hl=en" target="_blank">Google’s Privacy Policy</a>.
+    </p>
+
+    <p>For more information: <a href="adatkezeles.html">Privacy Policy</a></p>
+    <p><a href="index.html">Back to homepage</a></p>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.lang-btn');
+    const sections = document.querySelectorAll('.section');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(`section-${lang}`).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
