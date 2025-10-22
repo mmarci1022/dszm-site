@@ -13,58 +13,130 @@
       padding: 2rem;
       line-height: 1.6;
       color: #222;
+      transition: all 0.3s ease;
     }
-    h1, h2 {
+    h1 {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    h2 {
       margin-top: 2rem;
       font-weight: 600;
     }
-    ul { margin-left: 1.5rem; }
-    a { color: #0066cc; }
-    hr { margin: 2rem 0; border: none; border-top: 1px solid #ddd; }
+    ul {
+      margin-left: 1.5rem;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    hr {
+      margin: 2rem 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+    .lang-switch {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.5rem;
+    }
+    .lang-btn {
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+      transition: background 0.2s;
+    }
+    .lang-btn.active {
+      background: #0066cc;
+      color: white;
+      border-color: #0066cc;
+    }
+    .lang-btn:hover {
+      background: #e0e0e0;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="hu">HU</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+
   <h1>Adatkezelési tájékoztató / Privacy Policy</h1>
-  <p>English version below</p>
 
-  <h2>Magyar verzió</h2>
-  <p>Az oldal üzemeltetője magánszemélyként kezeli az űrlapon keresztül megadott személyes adatokat, az Európai Unió Általános Adatvédelmi Rendelete (GDPR – 2016/679/EU) előírásainak megfelelően.</p>
+  <!-- Magyar verzió -->
+  <div id="section-hu" class="section active">
+    <p>Az oldal üzemeltetője magánszemélyként kezeli az űrlapon keresztül megadott személyes adatokat, az Európai Unió Általános Adatvédelmi Rendelete (GDPR – 2016/679/EU) előírásainak megfelelően.</p>
 
-  <ul>
-    <li><strong>Adatkezelő:</strong> az oldal üzemeltetője (magánszemély)</li>
-    <li><strong>Elérhetőség:</strong> <a href="mailto:info@dszm-site.com">info@dszm-site.com</a></li>
-    <li><strong>Adatkezelés célja:</strong> kapcsolatfelvétel és információnyújtás az érdeklődők részére</li>
-    <li><strong>Kezelt adatok köre:</strong> név, e-mail cím, üzenet tartalma</li>
-    <li><strong>Adatkezelés jogalapja:</strong> az érintett önkéntes hozzájárulása (GDPR 6. cikk (1) a))</li>
-    <li><strong>Megőrzés ideje:</strong> legfeljebb 1 évig, illetve az ügylet lezárultáig; az érintett kérésére adatai azonnal törlésre kerülnek</li>
-    <li><strong>Adattovábbítás:</strong> harmadik félnek nem történik, kivéve az adatfeldolgozást végző Amazon Web Services (AWS), amely az e-mail kommunikáció biztonságos továbbítását végzi</li>
-    <li><strong>Adatbiztonság:</strong> az adatok biztonságos, jelszóval védett elektronikus rendszerben kerülnek tárolásra, a kommunikáció titkosított (HTTPS, TLS) kapcsolaton keresztül történik</li>
-    <li><strong>Jogok:</strong> az érintett bármikor kérheti adataihoz való hozzáférést, helyesbítést vagy törlést az <a href="mailto:info@dszm-site.com">info@dszm-site.com</a> címen</li>
-  </ul>
+    <ul>
+      <li><strong>Adatkezelő:</strong> az oldal üzemeltetője (magánszemély)</li>
+      <li><strong>Elérhetőség:</strong> <a href="mailto:info@dszm-site.com">info@dszm-site.com</a></li>
+      <li><strong>Adatkezelés célja:</strong> kapcsolatfelvétel és információnyújtás az érdeklődők részére</li>
+      <li><strong>Kezelt adatok köre:</strong> név, e-mail cím, üzenet tartalma</li>
+      <li><strong>Adatkezelés jogalapja:</strong> az érintett önkéntes hozzájárulása (GDPR 6. cikk (1) a))</li>
+      <li><strong>Megőrzés ideje:</strong> legfeljebb 1 évig, illetve az ügylet lezárultáig; az érintett kérésére adatai azonnal törlésre kerülnek</li>
+      <li><strong>Adattovábbítás:</strong> harmadik félnek nem történik, kivéve az adatfeldolgozást végző Amazon Web Services (AWS), amely az e-mail kommunikáció biztonságos továbbítását végzi</li>
+      <li><strong>Adatbiztonság:</strong> az adatok biztonságos, jelszóval védett elektronikus rendszerben kerülnek tárolásra, a kommunikáció titkosított (HTTPS, TLS) kapcsolaton keresztül történik</li>
+      <li><strong>Jogok:</strong> az érintett bármikor kérheti adataihoz való hozzáférést, helyesbítést vagy törlést az <a href="mailto:info@dszm-site.com">info@dszm-site.com</a> címen</li>
+    </ul>
 
-  <p>A weboldal üzemeltetése és az automatikus válaszüzenetek küldése az <strong>Amazon Simple Email Service (AWS SES)</strong> infrastruktúráján keresztül történik, amely megfelel az <a href="https://aws.amazon.com/aup/" target="_blank">AWS Acceptable Use Policy</a> és az <a href="https://aws.amazon.com/serviceterms/" target="_blank">AWS Service Terms</a> előírásainak. Tömeges, kéretlen, vagy reklámcélú üzenetek nem kerülnek kiküldésre.</p>
+    <p>A weboldal üzemeltetése és az automatikus válaszüzenetek küldése az <strong>Amazon Simple Email Service (AWS SES)</strong> infrastruktúráján keresztül történik, amely megfelel az 
+      <a href="https://aws.amazon.com/aup/" target="_blank">AWS Acceptable Use Policy</a> és az 
+      <a href="https://aws.amazon.com/serviceterms/" target="_blank">AWS Service Terms</a> előírásainak. 
+      Tömeges, kéretlen, vagy reklámcélú üzenetek nem kerülnek kiküldésre.</p>
 
-  <p><a href="index.html">Vissza a főoldalra</a></p>
+    <p><a href="index.html">Vissza a főoldalra</a></p>
+  </div>
 
-  <hr>
+  <!-- English version -->
+  <div id="section-en" class="section">
+    <p>The operator of this website manages the personal data submitted through the contact form as a private individual, in compliance with the EU General Data Protection Regulation (GDPR – Regulation 2016/679).</p>
 
-  <h2>English version</h2>
-  <p>The operator of this website manages the personal data submitted through the contact form as a private individual, in compliance with the EU General Data Protection Regulation (GDPR – Regulation 2016/679).</p>
+    <ul>
+      <li><strong>Data Controller:</strong> operator of the website (private individual)</li>
+      <li><strong>Contact:</strong> <a href="mailto:info@dszm-site.com">info@dszm-site.com</a></li>
+      <li><strong>Purpose of processing:</strong> to establish contact and provide information to interested parties</li>
+      <li><strong>Data processed:</strong> name, email address, message content</li>
+      <li><strong>Legal basis:</strong> voluntary consent of the data subject (Article 6 (1)(a) of the GDPR)</li>
+      <li><strong>Retention period:</strong> up to 1 year or until the transaction is completed; data can be deleted immediately upon request</li>
+      <li><strong>Data sharing:</strong> no transfer to third parties, except for processing via Amazon Web Services (AWS) for secure email delivery</li>
+      <li><strong>Data security:</strong> all data is stored securely in password-protected systems and transmitted over encrypted (HTTPS, TLS) connections</li>
+      <li><strong>Rights:</strong> you may request access, correction, or deletion of your data at any time by emailing <a href="mailto:info@dszm-site.com">info@dszm-site.com</a></li>
+    </ul>
 
-  <ul>
-    <li><strong>Data Controller:</strong> operator of the website (private individual)</li>
-    <li><strong>Contact:</strong> <a href="mailto:info@dszm-site.com">info@dszm-site.com</a></li>
-    <li><strong>Purpose of processing:</strong> to establish contact and provide information to interested parties</li>
-    <li><strong>Data processed:</strong> name, email address, message content</li>
-    <li><strong>Legal basis:</strong> voluntary consent of the data subject (Article 6 (1)(a) of the GDPR)</li>
-    <li><strong>Retention period:</strong> up to 1 year or until the transaction is completed; data can be deleted immediately upon request</li>
-    <li><strong>Data sharing:</strong> no transfer to third parties, except for processing via Amazon Web Services (AWS) for secure email delivery</li>
-    <li><strong>Data security:</strong> all data is stored securely in password-protected systems and transmitted over encrypted (HTTPS, TLS) connections</li>
-    <li><strong>Rights:</strong> you may request access, correction, or deletion of your data at any time by emailing <a href="mailto:info@dszm-site.com">info@dszm-site.com</a></li>
-  </ul>
+    <p>The website uses <strong>Amazon Simple Email Service (AWS SES)</strong> solely for legitimate transactional communication, in accordance with the 
+      <a href="https://aws.amazon.com/aup/" target="_blank">AWS Acceptable Use Policy</a> and 
+      <a href="https://aws.amazon.com/serviceterms/" target="_blank">AWS Service Terms</a>. 
+      No unsolicited or marketing emails are sent.</p>
 
-  <p>The website uses <strong>Amazon Simple Email Service (AWS SES)</strong> solely for legitimate transactional communication, in accordance with the <a href="https://aws.amazon.com/aup/" target="_blank">AWS Acceptable Use Policy</a> and <a href="https://aws.amazon.com/serviceterms/" target="_blank">AWS Service Terms</a>. No unsolicited or marketing emails are sent.</p>
+    <p><a href="index.html">Back to homepage</a></p>
+  </div>
 
-  <p><a href="index.html">Back to homepage</a></p>
+  <script>
+    const buttons = document.querySelectorAll('.lang-btn');
+    const sections = document.querySelectorAll('.section');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(`section-${lang}`).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
