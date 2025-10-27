@@ -295,23 +295,40 @@
       }
     });
 
-    // Touch/swipe support for mobile
+    // Touch/swipe support for mobile (ignore multi-touch gestures like pinch/two-finger tap)
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchActive = false; // only true when a single-finger touch is active
 
     modal.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    });
+      // If more than one touch point, ignore (pinch/zoom or two-finger tap)
+      if (e.touches && e.touches.length === 1) {
+        touchActive = true;
+        touchStartX = e.touches[0].screenX;
+      } else {
+        touchActive = false;
+      }
+    }, { passive: true });
 
     modal.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
+      if (!touchActive) {
+        touchActive = false;
+        return;
+      }
+      // changedTouches[0] will correspond to the touch that ended
+      touchEndX = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].screenX : touchStartX;
       const swipeThreshold = 50;
       if (touchStartX - touchEndX > swipeThreshold) {
         nextModalImage(); // Swipe left = next
       } else if (touchEndX - touchStartX > swipeThreshold) {
         prevModalImage(); // Swipe right = previous
       }
-    });
+      touchActive = false;
+    }, { passive: true });
+
+    modal.addEventListener('touchcancel', function() {
+      touchActive = false;
+    }, { passive: true });
   }
 
   if (document.readyState === 'loading') {
